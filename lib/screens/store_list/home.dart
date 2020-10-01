@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: <Widget>[
           Container(
-            margin: EdgeInsets.only(right: 10),
+            margin: EdgeInsets.only(right: 20),
             child: Icon(Icons.search, color: searchIconColor),
           ),
         ],

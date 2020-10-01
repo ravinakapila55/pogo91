@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pogo91/screens/store_list/all_shops.dart';
+import 'package:pogo91/screens/store_list/component/store_category.dart';
 import 'package:pogo91/utils/colors.dart';
 
 class StoreHeader extends StatelessWidget {
@@ -21,14 +23,19 @@ class StoreHeader extends StatelessWidget {
                   fontSize: 15, color: Colors.black, fontFamily: 'LatoRegular'),
             ),
             Spacer(),
-            Text(
-              rightTitleButton,
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                  fontSize: 15,
-                  color: labelGreyColor,
-                  fontFamily: 'LatoRegular'),
-            )
+            new InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AllShops()));
+                },
+                child: Text(
+                  rightTitleButton,
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                      fontSize: 15,
+                      color: labelGreyColor,
+                      fontFamily: 'LatoRegular'),
+                ))
           ],
         ));
   }

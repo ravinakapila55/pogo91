@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pogo91/screens/store_list/component/store_category.dart';
 import 'package:pogo91/screens/store_list/component/store_list_body.dart';
+import 'package:pogo91/utils/colors.dart';
 
 class AllShops extends StatelessWidget {
   @override
@@ -13,23 +14,45 @@ class AllShops extends StatelessWidget {
 
     // TODO: implement build
     return Scaffold(
-      body: GridView.count(
-        crossAxisCount: 4,
-        childAspectRatio: (itemWidth / itemHeight),
-        controller: new ScrollController(keepScrollOffset: false),
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        children: List.generate(30, (index) {
-          return (Container(child: StoreCategory()));
-        }),
+      body: Container(
+        margin: EdgeInsets.only(left: 10, right: 10),
+        child: GridView.count(
+          crossAxisCount: 4,
+          childAspectRatio: (itemWidth / itemHeight),
+          controller: new ScrollController(keepScrollOffset: false),
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          children: List.generate(28, (index) {
+            return (Container(child: StoreCategory()));
+          }),
+        ),
       ),
       appBar: AppBar(
         elevation: 0.0,
-        title: Text(
-          "All Stores",
-          textAlign: TextAlign.start,
-          style: TextStyle(color: Colors.black, fontSize: 16),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("All Shops",
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.black,
+                        fontFamily: 'LatoBold')),
+              ],
+            )
+            // Your widgets here
+          ],
         ),
+        actions: <Widget>[
+          Container(
+            margin: EdgeInsets.only(right: 20),
+            child: Icon(Icons.search, color: searchIconColor),
+          ),
+        ],
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
           color: Colors.black, //change your color here
