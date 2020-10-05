@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pogo91/screens/store_list/component/store_category.dart';
-import 'package:pogo91/screens/store_list/component/store_list_body.dart';
+
 import 'package:pogo91/utils/colors.dart';
 
 class AllShops extends StatelessWidget {

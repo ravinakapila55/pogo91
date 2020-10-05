@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pogo91/screens/cart/shop_description.dart';
 import 'package:pogo91/screens/store_list/home.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: HomeScreen(),
+      home: ShopDescription(),
     );
   }
 }

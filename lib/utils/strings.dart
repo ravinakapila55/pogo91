@@ -1,0 +1,13 @@
+const String first_name = "First Name";
+const String last_name = "Last Name";
+const String email_opt = "Email (Optional)";
+const String save = "Save";
+const String plus_add_address = "+Add Address";
+const String myAddress = "My Addresses";
+const String location = "Location";
+const String saveAddress = "Save Address";
+const String flat_number_build_number = "Flat Number, Build Number";
+const String floor_optional = "Floor (Optional)";
+const String home = "Home";
+const String other = "Other";
+const String office = "Office";
