@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBar.dart';
-import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBarItem.dart';
 import 'package:pogo91/screens/store_list/component/banner.dart';
 import 'package:pogo91/screens/store_list/component/shop_add_banner.dart';
 import 'package:pogo91/screens/store_list/component/store.dart';
 import 'package:pogo91/screens/store_list/component/store_category.dart';
 import 'package:pogo91/screens/store_list/component/store_header.dart';
-import 'package:pogo91/screens/store_list/component/store_location_toolbar.dart';
-import 'package:pogo91/screens/users/component/background.dart';
+import 'package:pogo91/screens/register/component/background.dart';
 
 class StoreListing extends StatelessWidget {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pogo91/screens/store_list/all_shops.dart';
+import 'package:pogo91/screens/store_list/all_shops_screen.dart';
 import 'package:pogo91/screens/store_list/component/store_category.dart';
 import 'package:pogo91/utils/colors.dart';
 

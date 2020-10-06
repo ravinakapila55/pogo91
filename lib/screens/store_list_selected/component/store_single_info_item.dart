@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pogo91/screens/shop_desc/shop_description_screen.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/constants.dart';
 import 'package:pogo91/utils/images.dart';
@@ -10,14 +11,19 @@ class StoreSingleInfoItem extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ShopDescription()),
+      ), // handle your onTap here
+      child: Container(
         width: double.infinity,
         height: 90,
         margin: EdgeInsets.only(top: 20),
         padding: EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
         decoration: BoxDecoration(
-            color: Constants.home_light_grey,
-            border: Border.all(color: Constants.home_light_grey),
+            color: homeLightGrey,
+            border: Border.all(color: homeLightGrey),
             borderRadius: BorderRadius.all(Radius.circular(5.0))),
         child: Row(
           children: [
@@ -109,6 +115,8 @@ class StoreSingleInfoItem extends StatelessWidget {
               ),
             )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

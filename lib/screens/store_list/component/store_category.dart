@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pogo91/screens/store_list_selected/store_list.dart';
+import 'package:pogo91/screens/store_list_selected/store_list_screen.dart';
 import 'package:pogo91/utils/images.dart';
 
 class StoreCategory extends StatelessWidget {

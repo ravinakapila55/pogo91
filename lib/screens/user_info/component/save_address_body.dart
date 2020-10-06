@@ -11,6 +11,7 @@ class SaveAddressBody extends StatelessWidget {
     // TODO: implement build
     return SingleChildScrollView(
       child: Container(
+        margin: EdgeInsets.only(top: 84),
         padding: EdgeInsets.only(left: 20, right: 20),
         child: Column(
           children: [
@@ -63,10 +64,17 @@ class SaveAddressBody extends StatelessWidget {
             ),
             ButtonRegular(
               label: saveAddress,
+              onPressedButton: () => onClickSaveAddress(context),
             )
           ],
         ),
       ),
     );
+  }
+
+  void onClickSaveAddress(BuildContext context) {
+    //   Navigator.push(context,
+    //                 MaterialPageRoute(builder: (context) => U()));
+    //             }
   }
 }

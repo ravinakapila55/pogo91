@@ -16,6 +16,4 @@ class Constants {
   static final Color login_grey = Color(0xFF4F4F4F);
   static final Color login_border_grey = Color(0xFFE6E6E6);
   static final Color login_button_blue = Color(0xFF2D4059);
-  static final Color home_grey = Color(0xFF969696);
-  static final Color home_light_grey = Color(0xFFF8F8FA);
 }

@@ -4,7 +4,7 @@ import 'package:pogo91/screens/store_list/component/shop_add_banner.dart';
 import 'package:pogo91/screens/store_list/component/store_header.dart';
 import 'package:pogo91/screens/store_list_selected/component/store_single_info_item.dart';
 import 'package:pogo91/screens/store_list_selected/component/store_title.dart';
-import 'package:pogo91/screens/users/component/background.dart';
+import 'package:pogo91/screens/register/component/background.dart';
 
 class StoreListBody extends StatelessWidget {
   @override

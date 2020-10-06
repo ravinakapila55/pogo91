@@ -10,6 +10,7 @@ class UserAddressBody extends StatelessWidget {
     // TODO: implement build
     return SingleChildScrollView(
         child: Container(
+      margin: EdgeInsets.only(top: 84),
       padding: EdgeInsets.only(left: 20, right: 20),
       child: Column(
         children: [

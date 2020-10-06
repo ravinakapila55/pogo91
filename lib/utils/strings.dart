@@ -11,3 +11,5 @@ const String floor_optional = "Floor (Optional)";
 const String home = "Home";
 const String other = "Other";
 const String office = "Office";
+const String allCategories = "All Categories";
+const String loginWithMobileNumber = "Login with Mobile Number";

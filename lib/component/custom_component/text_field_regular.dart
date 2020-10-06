@@ -7,11 +7,13 @@ class TextFieldRegular extends StatelessWidget {
   double marginTop;
   Color textColor;
   Alignment textAligment;
+  double textSize;
   TextFieldRegular(
       {@required this.label,
       this.marginTop: 20.0,
       this.textColor: Colors.black,
-      this.textAligment: Alignment.centerLeft});
+      this.textAligment: Alignment.centerLeft,
+      this.textSize: 12});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class TextFieldRegular extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-            fontSize: 12, color: textColor, fontFamily: 'LatoRegular'),
+            fontSize: textSize, color: textColor, fontFamily: 'LatoRegular'),
       ),
     );
   }

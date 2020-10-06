@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pogo91/screens/address/component/save_address_body.dart';
+import 'package:pogo91/screens/user_info/component/save_address_body.dart';
 
 class SaveAddress extends StatelessWidget {
   @override
@@ -7,6 +7,7 @@ class SaveAddress extends StatelessWidget {
     // TODO: implement build
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: SaveAddressBody(),
     );
   }

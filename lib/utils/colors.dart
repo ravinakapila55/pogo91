@@ -10,3 +10,12 @@ const edtBgGreyColor = Color(0xFFF9F9F9);
 const edtBorderColor = Color(0xFFE7E7E7);
 const txtorangeColor = Color(0xFFEA5455);
 const Color yellow = Color(0xFFFFD460);
+const Color darkYellow = Color(0xFFFFC33A);
+const Color darkBlue = Color(0xFF2D4059);
+
+const Color greyColor = Color(0xFF9D9696);
+const Color greyButtonColor = Color(0xFFF8F8F8);
+Color homeLightGrey = Color(0xFFF8F8FA);
+
+Color homeGreyColor = Color(0xFF969696);
+Color loginButtonBlueColor = Color(0xFF2D4059);

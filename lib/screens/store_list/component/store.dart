@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/constants.dart';
 import 'package:pogo91/utils/images.dart';
 
@@ -10,8 +11,8 @@ class StoreView extends StatelessWidget {
         margin: EdgeInsets.only(left: 15, right: 15),
         padding: EdgeInsets.all(5),
         decoration: BoxDecoration(
-            color: Constants.home_light_grey,
-            border: Border.all(color: Constants.home_light_grey),
+            color: homeLightGrey,
+            border: Border.all(color: homeLightGrey),
             borderRadius: BorderRadius.all(Radius.circular(5.0))),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,7 +51,7 @@ class StoreView extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 10,
-                          color: Constants.home_grey,
+                          color: homeGreyColor,
                           fontFamily: 'LatoRegular'),
                     ),
                   ),
