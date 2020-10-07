@@ -13,7 +13,11 @@ class EditText extends StatelessWidget {
     return Container(
         margin: EdgeInsets.only(top: marginTop),
         decoration: BoxDecoration(
-            border: Border.all(color: edtBorderColor), color: edtBgGreyColor),
+            border: Border.all(
+              color: edtBorderColor,
+            ),
+            borderRadius: BorderRadius.circular(5),
+            color: edtBgGreyColor),
         child: TextField(
           textAlign: TextAlign.start,
           decoration: new InputDecoration(

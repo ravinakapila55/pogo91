@@ -8,6 +8,7 @@ class ButtonRegular extends StatelessWidget {
   Color btn_bg;
   Color border_color;
 
+  BoxDecoration decoration;
   double marginTop;
   Function onPressedButton;
   ButtonRegular(
@@ -16,7 +17,8 @@ class ButtonRegular extends StatelessWidget {
       this.btn_bg: yellow,
       this.border_color: yellow,
       this.marginTop: 20,
-      this.onPressedButton: null});
+      this.onPressedButton: null,
+      @required this.decoration});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +27,7 @@ class ButtonRegular extends StatelessWidget {
     return Container(
         width: double.infinity,
         margin: EdgeInsets.only(top: marginTop),
-        decoration: BoxDecoration(
-            color: btn_bg,
-            border: Border.all(color: border_color),
-            borderRadius: BorderRadius.all(Radius.circular(5.0))),
+        decoration: decoration,
         child: MaterialButton(
           elevation: 0.0,
           onPressed: onPressedButton,
@@ -39,7 +38,6 @@ class ButtonRegular extends StatelessWidget {
                 color: Constants.login_button_blue,
                 fontFamily: 'LatoRegular'),
           ),
-          color: Constants.yellow,
         ));
   }
 }

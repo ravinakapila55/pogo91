@@ -19,6 +19,7 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             IconButton(
+              onPressed: () => null,
               icon: ImageIcon(AssetImage(kGPSImage), color: Colors.black),
             ),
             Text("C1-501, Mohali ",

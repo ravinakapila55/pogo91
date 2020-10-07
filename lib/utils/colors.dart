@@ -15,7 +15,12 @@ const Color darkBlue = Color(0xFF2D4059);
 
 const Color greyColor = Color(0xFF9D9696);
 const Color greyButtonColor = Color(0xFFF8F8F8);
-Color homeLightGrey = Color(0xFFF8F8FA);
+const Color homeLightGrey = Color(0xFFF8F8FA);
 
-Color homeGreyColor = Color(0xFF969696);
-Color loginButtonBlueColor = Color(0xFF2D4059);
+const Color homeGreyColor = Color(0xFF969696);
+const Color loginButtonBlueColor = Color(0xFF2D4059);
+
+const Color greyDottedColor = Color(0xFFD8D8D8);
+const bgColor = greyLightColor;
+const Color redApplyCoupanColor = Color(0xFFEA5455);
+const Color darkgreyButtonColor = Color(0xFFE2E2E2);

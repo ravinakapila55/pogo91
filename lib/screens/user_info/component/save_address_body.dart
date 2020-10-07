@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pogo91/component/custom_component/button.dart';
 import 'package:pogo91/component/custom_component/edit_text.dart';
 import 'package:pogo91/component/custom_component/text_field_regular.dart';
+import 'package:pogo91/utils/box_decoration/yellow_solid_shadow.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/strings.dart';
 
@@ -32,6 +33,7 @@ class SaveAddressBody extends StatelessWidget {
                 new Flexible(
                   child: Container(
                       child: ButtonRegular(
+                    decoration: YellowSolidShadow().getDecoration(),
                     textSize: 10,
                     btn_bg: edtBgGreyColor,
                     border_color: edtBorderColor,
@@ -43,6 +45,7 @@ class SaveAddressBody extends StatelessWidget {
                   child: Container(
                       margin: EdgeInsets.only(left: 10, right: 10),
                       child: ButtonRegular(
+                        decoration: YellowSolidShadow().getDecoration(),
                         textSize: 10,
                         btn_bg: edtBgGreyColor,
                         border_color: edtBorderColor,
@@ -53,6 +56,7 @@ class SaveAddressBody extends StatelessWidget {
                 new Flexible(
                   child: Container(
                       child: ButtonRegular(
+                    decoration: YellowSolidShadow().getDecoration(),
                     textSize: 10,
                     border_color: edtBorderColor,
                     btn_bg: edtBgGreyColor,
@@ -63,6 +67,7 @@ class SaveAddressBody extends StatelessWidget {
               ],
             ),
             ButtonRegular(
+              decoration: YellowSolidShadow().getDecoration(),
               label: saveAddress,
               onPressedButton: () => onClickSaveAddress(context),
             )

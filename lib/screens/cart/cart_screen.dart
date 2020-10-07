@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pogo91/component/custom_component/normal_text_field.dart';
 import 'package:pogo91/screens/cart/component/cart_body.dart';
+import 'package:pogo91/screens/checkout/checkout_screen.dart';
 import 'package:pogo91/utils/box_decoration/top_border_shadow.dart';
 import 'package:pogo91/utils/colors.dart';
 
@@ -57,19 +58,28 @@ class CartProduct extends StatelessWidget {
               flex: 2,
             ),
             Expanded(
-              child: Container(
-                  alignment: Alignment.center,
-                  height: 40,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: darkYellow,
-                    borderRadius: BorderRadius.circular(5),
+              child: Material(
+                child: InkWell(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CheckoutScreen()),
+                  ), // handle your onTap here
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 40,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: darkYellow,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: NormalTextField(
+                      label: "Checkout",
+                      textSize: 15,
+                      textColor: Colors.black,
+                    ),
                   ),
-                  child: NormalTextField(
-                    label: "Checkout",
-                    textSize: 15,
-                    textColor: Colors.black,
-                  )),
+                ),
+              ),
               flex: 3,
             )
           ],

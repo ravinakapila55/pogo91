@@ -5,9 +5,9 @@ import 'package:pogo91/screens/cart/cart_screen.dart';
 import 'package:pogo91/screens/shop_desc/cart_item.dart';
 import 'package:pogo91/screens/shop_desc/products_category.dart';
 import 'package:pogo91/screens/store_list/component/banner.dart';
+import 'package:pogo91/utils/box_decoration/circle_grey_widget.dart';
 import 'package:pogo91/utils/box_decoration/top_border_shadow.dart';
 import 'package:pogo91/utils/colors.dart';
-import 'package:pogo91/utils/constants.dart';
 import 'package:pogo91/utils/images.dart';
 import 'package:pogo91/utils/strings.dart';
 
@@ -123,25 +123,41 @@ class ShopDescription extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Container(
+              margin: EdgeInsets.only(left: 5, right: 5),
               padding: EdgeInsets.all(10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   NormalTextField(
                     label: "Delivery in 4 - 5 hours",
                     textSize: 8,
                     textColor: Colors.black,
                   ),
-                  NormalTextField(
-                    label: "Free delivery above `1000",
-                    textSize: 8,
-                    textColor: Colors.black,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleGreyDecoration().getRoundedWidget(),
+                      NormalTextField(
+                        label: "Free delivery above `1000",
+                        textSize: 8,
+                        textColor: Colors.black,
+                      )
+                    ],
                   ),
-                  NormalTextField(
-                    label: "5 Km Away",
-                    textSize: 8,
-                    textColor: Colors.black,
-                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleGreyDecoration().getRoundedWidget(),
+                      NormalTextField(
+                        label: "5 Km Away",
+                        textSize: 8,
+                        textColor: Colors.black,
+                      )
+                    ],
+                  )
                 ],
               )),
         ),
@@ -253,7 +269,7 @@ class ShopDescription extends StatelessWidget {
                   Icon(Icons.search),
                   NormalTextField(
                     label: "Sort",
-                    textSize: 7,
+                    textSize: 9,
                     textColor: Colors.black,
                   )
                 ],
@@ -268,7 +284,7 @@ class ShopDescription extends StatelessWidget {
                   Icon(Icons.search),
                   NormalTextField(
                     label: "Filter",
-                    textSize: 7,
+                    textSize: 9,
                     textColor: Colors.black,
                   )
                 ],
@@ -311,7 +327,7 @@ class ShopDescription extends StatelessWidget {
                             ),
                             NormalTextField(
                               label: "Checkout",
-                              textSize: 8,
+                              textSize: 9,
                               textColor: Colors.white,
                             )
                           ],

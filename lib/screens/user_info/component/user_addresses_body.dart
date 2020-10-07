@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pogo91/component/custom_component/button.dart';
 import 'package:pogo91/component/custom_component/text_field_regular.dart';
+import 'package:pogo91/utils/box_decoration/yellow_solid_shadow.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/strings.dart';
 
@@ -22,10 +23,12 @@ class UserAddressBody extends StatelessWidget {
                   children: [
                     TextFieldRegular(
                       label: "Hi Hitashi Garg",
+                      textSize: 14,
                     ),
                     TextFieldRegular(
                       label: "hitashigarg123@gmail.com",
-                      marginTop: 5,
+                      textSize: 14,
+                      marginTop: 13,
                     )
                   ],
                 ),
@@ -36,6 +39,7 @@ class UserAddressBody extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   width: double.infinity,
                   child: TextFieldRegular(
+                    textSize: 14,
                     label: "Edit",
                     textColor: txtorangeColor,
                     marginTop: 0,
@@ -47,9 +51,13 @@ class UserAddressBody extends StatelessWidget {
             ],
           ),
           TextFieldRegular(
+            textSize: 14,
+            marginTop: 40,
             label: myAddress,
           ),
           ButtonRegular(
+            decoration: YellowSolidShadow().getDecoration(),
+            textSize: 16,
             label: plus_add_address,
           )
         ],

@@ -3,6 +3,7 @@ import 'package:pogo91/component/custom_component/button.dart';
 import 'package:pogo91/component/custom_component/edit_text.dart';
 import 'package:pogo91/component/custom_component/text_field_regular.dart';
 import 'package:pogo91/screens/user_info/user_addresses.dart';
+import 'package:pogo91/utils/box_decoration/yellow_solid_shadow.dart';
 import 'package:pogo91/utils/strings.dart';
 
 class SaveUserInfoBody extends StatelessWidget {
@@ -28,6 +29,7 @@ class SaveUserInfoBody extends StatelessWidget {
             marginTop: 17,
           ),
           ButtonRegular(
+            decoration: YellowSolidShadow().getDecoration(),
             marginTop: 40,
             textSize: 16,
             label: save,
@@ -39,6 +41,7 @@ class SaveUserInfoBody extends StatelessWidget {
             label: myAddress,
           ),
           ButtonRegular(
+            decoration: YellowSolidShadow().getDecoration(),
             textSize: 16,
             marginTop: 20,
             label: plus_add_address,

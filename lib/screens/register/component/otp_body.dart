@@ -50,6 +50,7 @@ class OTPBody extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 54, left: 20, right: 20),
               child: PinCodeTextField(
+                appContext: context,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 length: 4,
                 obscureText: false,
