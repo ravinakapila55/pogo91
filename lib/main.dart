@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pogo91/screens/store_list/home_screen.dart';
+import 'package:pogo91/screens/main_screen.dart';
+import 'package:pogo91/screens/tutorial/tutorial_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: HomeScreen(),
+      home: TutorialScreen(),
     );
   }
 }

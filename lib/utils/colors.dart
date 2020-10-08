@@ -24,3 +24,10 @@ const Color greyDottedColor = Color(0xFFD8D8D8);
 const bgColor = greyLightColor;
 const Color redApplyCoupanColor = Color(0xFFEA5455);
 const Color darkgreyButtonColor = Color(0xFFE2E2E2);
+
+const Color greyColorAcount = Color(0xFFF9F9F9);
+
+const Color logoutColorAcount = Color(0xFFFF5959);
+const Color greyBorderColor = Color(0xFFDFDFDF);
+const Color orangeColor = Color(0xFFF07B3F);
+const Color yellowDark = Color(0xFFEDB727);

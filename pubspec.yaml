@@ -53,7 +53,8 @@ flutter:
     - assets/images/gps.png
     - assets/images/ic_add.png
     - assets/images/ic_minus.png
-
+    - assets/images/ic_delete.png
+    - assets/images/illustration3.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

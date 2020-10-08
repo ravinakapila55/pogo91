@@ -41,50 +41,6 @@ class HomeScreen extends StatelessWidget {
       ),
       body: StoreListing(),
       backgroundColor: Colors.white,
-      floatingActionButton: Padding(
-        padding: EdgeInsets.only(top: 20),
-        child: SizedBox(
-          height: 70,
-          width: 70,
-          child: FloatingActionButton(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            onPressed: () {},
-            child: Container(
-              height: 70,
-              width: 70,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white, width: 4),
-                shape: BoxShape.circle,
-                color: Constants.yellow,
-              ),
-              child: Icon(Icons.photo_camera, size: 30),
-            ),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: FABBottomAppBar(
-        centerItemText: '',
-        color: Colors.white,
-        backgroundColor: Constants.yellow,
-        onTabSelected: (value) => {
-          if (value == 3)
-            {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Login()),
-              )
-            }
-        },
-        selectedColor: Colors.white,
-        items: [
-          FABBottomAppBarItem(iconData: Icons.home),
-          FABBottomAppBarItem(iconData: Icons.rate_review),
-          FABBottomAppBarItem(iconData: Icons.create_new_folder),
-          FABBottomAppBarItem(iconData: Icons.supervised_user_circle),
-        ],
-      ),
     );
   }
 }

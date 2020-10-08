@@ -4,3 +4,5 @@ const String kRatingImage = 'assets/images/rating.png';
 const String kGPSImage = 'assets/images/gps.png';
 const String icCartAdd = 'assets/images/ic_add.png';
 const String icCartRemove = 'assets/images/ic_minus.png';
+const String icDelete = 'assets/images/ic_delete.png';
+const String icIllustraction3 = 'assets/images/illustration3.png';

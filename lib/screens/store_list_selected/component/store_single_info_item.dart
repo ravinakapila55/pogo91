@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pogo91/component/custom_component/normal_text_field.dart';
+import 'package:pogo91/component/custom_component/text_field_regular.dart';
 import 'package:pogo91/screens/shop_desc/shop_description_screen.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/constants.dart';
@@ -6,7 +8,8 @@ import 'package:pogo91/utils/images.dart';
 
 class StoreSingleInfoItem extends StatelessWidget {
   bool imgShopVisible;
-  StoreSingleInfoItem(bool imgShopVisible) {
+  bool isDeleteIconVisible;
+  StoreSingleInfoItem(bool imgShopVisible, {this.isDeleteIconVisible: false}) {
     this.imgShopVisible = imgShopVisible;
   }
   @override
@@ -44,54 +47,36 @@ class StoreSingleInfoItem extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(left: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    child: Text(
-                      "30% on groceries",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.black,
-                          fontFamily: 'LatoRegular'),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(left: 5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Text(
+                        "30% on groceries",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                            fontFamily: 'LatoRegular'),
+                      ),
                     ),
-                  ),
-                  Container(
-                    child: Text(
-                      "Raju Kirana Store",
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: redColor,
-                          fontFamily: 'LatoRegular'),
+                    Container(
+                      child: Text(
+                        "Raju Kirana Store",
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: redColor,
+                            fontFamily: 'LatoRegular'),
+                      ),
                     ),
-                  ),
-                  Container(
-                      margin: EdgeInsets.only(top: 5),
-                      child: Row(
-                        children: [
-                          Row(
-                            children: [
-                              Image.asset(
-                                kRatingImage,
-                                width: 8,
-                                height: 8,
-                              ),
-                              Text(
-                                "5.0",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 8,
-                                    color: Constants.login_grey,
-                                    fontFamily: 'LatoRegular'),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10),
-                            child: Row(
+                    Container(
+                        margin: EdgeInsets.only(top: 5),
+                        child: Row(
+                          children: [
+                            Row(
                               children: [
                                 Image.asset(
                                   kRatingImage,
@@ -99,7 +84,7 @@ class StoreSingleInfoItem extends StatelessWidget {
                                   height: 8,
                                 ),
                                 Text(
-                                  "2.5km",
+                                  "5.0",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 8,
@@ -108,12 +93,56 @@ class StoreSingleInfoItem extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          )
-                        ],
-                      )),
-                ],
+                            Container(
+                              margin: EdgeInsets.only(left: 10),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    kRatingImage,
+                                    width: 8,
+                                    height: 8,
+                                  ),
+                                  Text(
+                                    "2.5km",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 8,
+                                        color: Constants.login_grey,
+                                        fontFamily: 'LatoRegular'),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        )),
+                  ],
+                ),
               ),
-            )
+              flex: 4,
+            ),
+            Expanded(
+              child: Visibility(
+                visible: isDeleteIconVisible,
+                child: Container(
+                  margin: EdgeInsets.only(left: 5, right: 5),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.delete,
+                        color: orangeColor,
+                      ),
+                      NormalTextField(
+                        label: "1 items",
+                        textColor: orangeColor,
+                        textSize: 8,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              flex: 1,
+            ),
           ],
         ),
       ),
