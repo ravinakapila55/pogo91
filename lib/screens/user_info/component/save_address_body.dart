@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pogo91/component/custom_component/button.dart';
 import 'package:pogo91/component/custom_component/edit_text.dart';
 import 'package:pogo91/component/custom_component/text_field_regular.dart';
+import 'package:pogo91/utils/box_decoration/green_solid_shadow%20copy.dart';
+import 'package:pogo91/utils/box_decoration/grey_border_shadow.dart';
+import 'package:pogo91/utils/box_decoration/grey_solid_shadow.dart';
 import 'package:pogo91/utils/box_decoration/yellow_solid_shadow.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/strings.dart';
@@ -33,7 +36,7 @@ class SaveAddressBody extends StatelessWidget {
                 new Flexible(
                   child: Container(
                       child: ButtonRegular(
-                    decoration: YellowSolidShadow().getDecoration(),
+                    decoration: GreenSolidShadow().getDecoration(),
                     textSize: 10,
                     btn_bg: edtBgGreyColor,
                     border_color: edtBorderColor,
@@ -45,7 +48,7 @@ class SaveAddressBody extends StatelessWidget {
                   child: Container(
                       margin: EdgeInsets.only(left: 10, right: 10),
                       child: ButtonRegular(
-                        decoration: YellowSolidShadow().getDecoration(),
+                        decoration: GreySolidShadow().getBorderShow(),
                         textSize: 10,
                         btn_bg: edtBgGreyColor,
                         border_color: edtBorderColor,
@@ -56,7 +59,7 @@ class SaveAddressBody extends StatelessWidget {
                 new Flexible(
                   child: Container(
                       child: ButtonRegular(
-                    decoration: YellowSolidShadow().getDecoration(),
+                    decoration: GreyBorderShadow().getBorderShow(),
                     textSize: 10,
                     border_color: edtBorderColor,
                     btn_bg: edtBgGreyColor,
@@ -78,8 +81,13 @@ class SaveAddressBody extends StatelessWidget {
   }
 
   void onClickSaveAddress(BuildContext context) {
-    //   Navigator.push(context,
-    //                 MaterialPageRoute(builder: (context) => U()));
-    //             }
+    Navigator.of(context).popUntil((route) {
+      if (route.settings.name == NAV_USER_ADDRESSES) {
+        (route.settings.arguments as Map)['item'] = 'LoginSuccess';
+        return true;
+      } else {
+        return false;
+      }
+    });
   }
 }

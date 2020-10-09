@@ -19,18 +19,22 @@ class StoreCartBody extends StatelessWidget {
                 StoreSingleInfoItem(
                   true,
                   isDeleteIconVisible: true,
+                  isCallCart: true,
                 ),
                 StoreSingleInfoItem(
                   false,
                   isDeleteIconVisible: true,
+                  isCallCart: true,
                 ),
                 StoreSingleInfoItem(
                   false,
                   isDeleteIconVisible: true,
+                  isCallCart: true,
                 ),
                 StoreSingleInfoItem(
                   false,
                   isDeleteIconVisible: true,
+                  isCallCart: true,
                 ),
               ],
             ),

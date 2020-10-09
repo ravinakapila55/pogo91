@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pogo91/screens/register/component/background.dart';
 import 'package:pogo91/screens/register/otp_screen.dart';
 import 'package:pogo91/utils/constants.dart';
+import 'package:pogo91/utils/strings.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -103,10 +104,7 @@ class Body extends StatelessWidget {
                   border: Border.all(color: Constants.yellow),
                   borderRadius: BorderRadius.all(Radius.circular(5.0))),
               child: MaterialButton(
-                onPressed: () => {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => OTP()))
-                },
+                onPressed: () => {onPressedLogin(context)},
                 elevation: 0.0,
                 child: Text(
                   "Log In",
@@ -123,5 +121,9 @@ class Body extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onPressedLogin(BuildContext context) {
+    Navigator.pushNamed(context, NAV_OTP);
   }
 }

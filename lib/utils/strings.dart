@@ -25,5 +25,31 @@ const String reward_points = "Rewards Points";
 const String active_carts = "Active Carts";
 const String language = "Language";
 const String customer_support = "Customer Support";
-const String signout = "Sign out";
+const String signout = "Sign Out";
 const String skip = "Skip";
+const String my_favorite_stores = "My Favourite Stores";
+
+const String recentlySearched = "Recently Searched";
+
+const String successfully = "Successful";
+const String orderSuccessfully = "You order has been placed successfully";
+
+const String NAV_MAIN_SCREEN = '/MainHomeScreen';
+const String NAV_TUTORIAL_SCREEN = '/TutorialScreen';
+const String NAV_HOME_SCREEN = '/HomeScreen';
+const String NAV_STORE_LISTING_CATEGORY_SELECTED =
+    '/NavStoreListingCategorySelected';
+const String NAV_MY_FAVORITE_SCREEN = '/MYFAVORITESCREEN';
+const String NAV_ACTIVE_CARTS = '/ActiveCarts';
+const String NAV_ACCOUNT = "/Account";
+const String NAV_SIGN_UP = '/SignUp';
+const String NAV_OTP = '/OTP';
+const String NAV_SAVE_USER_INFO = '/NavSaveUserInfo';
+const String NAV_USER_ADDRESSES = '/NavUserAddresses';
+const String NAV_PLACE_PICKER = '/PlacePicker';
+const String NAV_SAVE_ADDRESSES = '/SaveAddresses';
+const String NAV_CHECKOUTSCREEN = '/CheckoutScreen';
+const String NAV_SEARCH = '/NAV_SEARCH';
+const String NAV_ORDER_SUCCESS = '/Order_Success';
+const String NAV_PAST_ORDER = '/PastOrders';
+const String NAV_PRODUCT_DETAIL = '/ProductDetailsScreen';

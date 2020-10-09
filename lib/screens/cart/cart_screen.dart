@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pogo91/component/custom_component/normal_text_field.dart';
 import 'package:pogo91/screens/cart/component/cart_body.dart';
-import 'package:pogo91/screens/checkout/checkout_screen.dart';
 import 'package:pogo91/utils/box_decoration/top_border_shadow.dart';
 import 'package:pogo91/utils/colors.dart';
+import 'package:pogo91/utils/strings.dart';
 
 class CartProduct extends StatelessWidget {
   @override
@@ -12,6 +12,10 @@ class CartProduct extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back_ios, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         backgroundColor: Colors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -60,10 +64,8 @@ class CartProduct extends StatelessWidget {
             Expanded(
               child: Material(
                 child: InkWell(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CheckoutScreen()),
-                  ), // handle your onTap here
+                  onTap: () => Navigator.pushNamed(
+                      context, NAV_CHECKOUTSCREEN), // handle your onTap here
                   child: Container(
                     alignment: Alignment.center,
                     height: 40,

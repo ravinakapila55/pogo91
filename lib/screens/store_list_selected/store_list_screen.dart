@@ -15,8 +15,9 @@ class StoreList extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: true, // Don't show the leading button
         titleSpacing: 0.0,
-        iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back_ios, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -82,15 +83,6 @@ class StoreList extends StatelessWidget {
         centerItemText: '',
         color: Colors.white,
         backgroundColor: Constants.yellow,
-        onTabSelected: (value) => {
-          if (value == 3)
-            {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Login()),
-              )
-            }
-        },
         selectedColor: Colors.white,
         items: [
           FABBottomAppBarItem(iconData: Icons.home),

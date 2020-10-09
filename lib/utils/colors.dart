@@ -31,3 +31,12 @@ const Color logoutColorAcount = Color(0xFFFF5959);
 const Color greyBorderColor = Color(0xFFDFDFDF);
 const Color orangeColor = Color(0xFFF07B3F);
 const Color yellowDark = Color(0xFFEDB727);
+const Color searchTextColor = Color(0xFF727272);
+
+const Color orderSuccessDescColor = Color(0xFF7E7E7E);
+const Color orderSuccessTitleColor = Color(0xFF2D4059);
+const Color addressScreenDescColor = Color(0xFF383737);
+const Color addressScreenDecorationColor = Color(0xFF707070);
+
+const Color pastOrderBorderColor = Color(0xFFE7E7E7);
+const Color pastOrderSolidColor = Color(0xFFF9F9F9);

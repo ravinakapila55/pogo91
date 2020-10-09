@@ -6,3 +6,4 @@ const String icCartAdd = 'assets/images/ic_add.png';
 const String icCartRemove = 'assets/images/ic_minus.png';
 const String icDelete = 'assets/images/ic_delete.png';
 const String icIllustraction3 = 'assets/images/illustration3.png';
+const String icCheckIcon = 'assets/images/check.png';

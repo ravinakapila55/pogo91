@@ -124,7 +124,7 @@ class _TutorialScreen extends State<TutorialScreen> {
               : ButtonRegular(
                   label: "Get Started",
                   onPressedButton: () => onClickHomeScreen(context),
-                  decoration: YellowSolidShadow().getDecoration(),
+                  decoration: YellowSolidShadow50().getDecoration(),
                 ),
         ),
       ),
@@ -133,8 +133,7 @@ class _TutorialScreen extends State<TutorialScreen> {
 
   void onClickHomeScreen(BuildContext context) {
     Navigator.pop(context);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => MainHomeScreen()));
+    Navigator.pushNamed(context, NAV_HOME_SCREEN);
   }
 
   Widget nextButton() {
@@ -148,7 +147,7 @@ class _TutorialScreen extends State<TutorialScreen> {
           height: 50,
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(left: 20),
-          decoration: YellowSolidShadow().getDecoration(),
+          decoration: YellowSolidShadow50().getDecoration(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -6,6 +6,7 @@ import 'package:pogo91/screens/register/component/background.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/constants.dart';
 import 'package:pogo91/utils/images.dart';
+import 'package:pogo91/utils/strings.dart';
 
 class OTPBody extends StatelessWidget {
   const OTPBody({
@@ -68,8 +69,7 @@ class OTPBody extends StatelessWidget {
                 backgroundColor: Colors.white,
                 enableActiveFill: false,
                 onCompleted: (v) {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SaveUserInfo()));
+                  onCompletedVerifyOtp(context);
                 },
                 onChanged: (value) {
                   print(value);
@@ -106,5 +106,9 @@ class OTPBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onCompletedVerifyOtp(BuildContext context) {
+    Navigator.pushNamed(context, NAV_SAVE_USER_INFO);
   }
 }

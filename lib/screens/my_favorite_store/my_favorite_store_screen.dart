@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pogo91/component/custom_component/normal_text_field.dart';
 import 'package:pogo91/component/custom_component/text_field_bold.dart';
 import 'package:pogo91/screens/my_favorite_store/component/my_favorite_store_body.dart';
+import 'package:pogo91/utils/strings.dart';
 
 class MyFavoriteStoreScreen extends StatelessWidget {
   Function onBackPressed;
-  MyFavoriteStoreScreen(@required this.onBackPressed);
+
+  MyFavoriteStoreScreen(this.onBackPressed);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class MyFavoriteStoreScreen extends StatelessWidget {
           elevation: 0.0,
           title: TextFieldBold(
             marginTop: 0,
-            label: "My Favourite Stores",
+            label: my_favorite_stores,
             textColor: Colors.black,
           )),
       body: MyFovoriteStoreBody(),

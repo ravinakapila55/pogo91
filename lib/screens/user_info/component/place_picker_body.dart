@@ -3,6 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pogo91/component/custom_component/button.dart';
+import 'package:pogo91/component/custom_component/normal_text_field.dart';
+import 'package:pogo91/component/custom_component/text_field_bold.dart';
+import 'package:pogo91/component/custom_component/text_field_regular.dart';
+import 'package:pogo91/utils/box_decoration/grey_solid_shadow.dart';
+import 'package:pogo91/utils/box_decoration/yellow_border_shadow.dart';
+import 'package:pogo91/utils/box_decoration/yellow_solid_shadow.dart';
+import 'package:pogo91/utils/box_decoration/yellow_solid_shadow_50.dart';
+import 'package:pogo91/utils/strings.dart';
 
 class PlacePickerBody extends StatefulWidget {
   @override
@@ -10,90 +19,104 @@ class PlacePickerBody extends StatefulWidget {
 }
 
 class _PlacePickerBody extends State<PlacePickerBody> {
-  var geolocator = Geolocator();
-  Position position;
-  static final CameraPosition _kInitialPosition = const CameraPosition(
-    target: LatLng(-33.852, 151.211),
-    zoom: 11.0,
+  Completer<GoogleMapController> _controller = Completer();
+
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
   );
-  CameraPosition _position = _kInitialPosition;
-  bool _isMoving = false;
-  StreamSubscription _getPositionSubscription;
-  var locationOptions =
-      LocationOptions(accuracy: LocationAccuracy.high, timeInterval: 10);
+
+  static final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        Container(
-          width: double.infinity,
-          height: double.infinity,
+        Expanded(
           child: GoogleMap(
-            onMapCreated: _onMapCreated,
             myLocationEnabled: true,
+            zoomControlsEnabled: false,
             myLocationButtonEnabled: true,
+            mapType: MapType.normal,
+            initialCameraPosition: _kGooglePlex,
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+            },
           ),
+          flex: 2,
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: new RaisedButton(
-              onPressed: _getAddress,
-              textColor: Colors.white,
-              color: Colors.red,
-              padding: const EdgeInsets.all(8.0),
-              child: new Text(
-                "GetAddress",
-              ),
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.only(left: 20, right: 20),
+            height: double.infinity,
+            child: Column(
+              children: [
+                TextFieldRegular(
+                  label: "Location",
+                  marginTop: 15,
+                  textSize: 15,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          TextFieldBold(
+                            label: "Cherry County",
+                            textSize: 15,
+                          ),
+                          TextFieldRegular(
+                            textSize: 10,
+                            label:
+                                "Tech Zone IV, Amarpali Dream Valley, Uttarpradesh, 201306, India",
+                            marginTop: 9,
+                          ),
+                        ],
+                      ),
+                      flex: 3,
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.only(top: 20),
+                        height: 27,
+                        child: ButtonRegular(
+                          marginTop: 0,
+                          label: "Change",
+                          decoration: GreySolidShadow().getBorderShow(),
+                          textSize: 10,
+                        ),
+                      ),
+                      flex: 1,
+                    )
+                  ],
+                ),
+                ButtonRegular(
+                  onPressedButton: () => onClickConfirmLocation(context),
+                  label: "Confirm Location & Proceed",
+                  decoration: YellowSolidShadow().getDecoration(),
+                  textSize: 16,
+                )
+              ],
             ),
           ),
-        ),
-        Center(
-          child: Image.asset(
-            'assets/images/startloc.png',
-            height: 60,
-            width: 60,
-          ),
+          flex: 1,
         )
       ],
     );
   }
 
-  void _onMapCreated(GoogleMapController controller) {
-    // mapController.addListener(_onMapChanged);
-    _extractMapInfo();
-    setState(() {});
+  void onClickConfirmLocation(BuildContext context) {
+    Navigator.pushNamed(context, NAV_SAVE_ADDRESSES);
   }
 
-  void _onMapChanged() {
-    setState(() {
-      _extractMapInfo();
-    });
-  }
-
-  void _extractMapInfo() {
-    //  _position = mapController.cameraPosition;
-    print(_position.target.longitude);
-    //  _isMoving = mapController.isCameraMoving;
-  }
-
-  Future _getAddress() async {
-//    List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(position.latitude,position.longitude);
-//     print(placemark.elementAt(0).locality);\
-    print(_position.target.latitude);
-    //  final coordinates = new Coordinates(_position.target.latitude,_position.target.longitude);
-
-    // print(coordinates);
-
-    // var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    //  print( addresses.first.addressLine);
-  }
-
-  @override
-  void dispose() {
-    _getPositionSubscription.cancel();
-    super.dispose();
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }

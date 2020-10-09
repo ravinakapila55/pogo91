@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pogo91/component/custom_component/normal_text_field.dart';
 import 'package:pogo91/component/custom_component/text_field_regular.dart';
+import 'package:pogo91/screens/cart/cart_screen.dart';
 import 'package:pogo91/screens/shop_desc/shop_description_screen.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/constants.dart';
@@ -9,16 +10,23 @@ import 'package:pogo91/utils/images.dart';
 class StoreSingleInfoItem extends StatelessWidget {
   bool imgShopVisible;
   bool isDeleteIconVisible;
-  StoreSingleInfoItem(bool imgShopVisible, {this.isDeleteIconVisible: false}) {
+  bool isCallCart;
+  StoreSingleInfoItem(bool imgShopVisible,
+      {this.isDeleteIconVisible: false, this.isCallCart: false}) {
     this.imgShopVisible = imgShopVisible;
   }
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ShopDescription()),
-      ), // handle your onTap here
+      onTap: () => isCallCart
+          ? Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CartProduct()),
+            )
+          : Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ShopDescription()),
+            ), // handle your onTap here
       child: Container(
         width: double.infinity,
         height: 90,

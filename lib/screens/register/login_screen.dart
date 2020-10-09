@@ -7,6 +7,10 @@ class Login extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back_ios, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
           color: Colors.black, //change your color here

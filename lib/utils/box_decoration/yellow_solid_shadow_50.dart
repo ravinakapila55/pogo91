@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pogo91/utils/colors.dart';
 
-class YellowSolidShadow {
+class YellowSolidShadow50 {
   BoxDecoration getDecoration() {
     return BoxDecoration(
       color: darkYellow,

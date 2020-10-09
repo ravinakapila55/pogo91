@@ -6,17 +6,20 @@ class NormalTextField extends StatelessWidget {
   String label;
   Color textColor;
   TextDecoration textDecoration;
+  TextAlign textAlign;
   NormalTextField(
       {this.textSize: 14,
       @required this.label,
       this.textColor: greyColor,
-      this.textDecoration: TextDecoration.none});
+      this.textDecoration: TextDecoration.none,
+      textAlign: TextAlign.start});
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Text(
       label,
+      textAlign: textAlign,
       style: TextStyle(
           fontSize: textSize,
           color: textColor,

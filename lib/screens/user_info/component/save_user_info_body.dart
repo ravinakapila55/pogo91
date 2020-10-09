@@ -41,6 +41,7 @@ class SaveUserInfoBody extends StatelessWidget {
             label: myAddress,
           ),
           ButtonRegular(
+            onPressedButton: () => onClickAddAddresses(context),
             decoration: YellowSolidShadow().getDecoration(),
             textSize: 16,
             marginTop: 20,
@@ -52,7 +53,11 @@ class SaveUserInfoBody extends StatelessWidget {
   }
 
   void onClickSave(BuildContext context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => UserAddresses()));
+    Navigator.pushNamed(context, NAV_USER_ADDRESSES);
+  }
+
+  void onClickAddAddresses(BuildContext context) {
+    Navigator.pushNamed(context, NAV_USER_ADDRESSES);
+    Navigator.pushNamed(context, NAV_PLACE_PICKER);
   }
 }

@@ -16,7 +16,7 @@ class CustomerProfileBody extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.only(left: 10, right: 10),
+                padding: EdgeInsets.only(left: 20, right: 20),
                 child: Column(
                   children: [
                     TextFieldRegular(
@@ -56,7 +56,12 @@ class CustomerProfileBody extends StatelessWidget {
               ),
               cellView(refer_and_earn_rewards,
                   isBorderVisible: true, marginTop: 33),
-              cellView(past_orders, isBorderVisible: true),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, NAV_PAST_ORDER);
+                },
+                child: cellView(past_orders, isBorderVisible: true),
+              ),
               cellView(my_account, isBorderVisible: true),
               cellView(reward_points),
               cellView(active_carts, marginTop: 20, isBorderVisible: true),
@@ -73,7 +78,7 @@ class CustomerProfileBody extends StatelessWidget {
   Widget cellView(String title,
       {bool isBorderVisible: false, double marginTop: 0}) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10),
+      padding: EdgeInsets.only(left: 19, right: 12),
       margin: EdgeInsets.only(top: marginTop),
       decoration: ButtonGreyBackgroundShadowAccount().getBorderShow(),
       child: Container(
@@ -90,7 +95,8 @@ class CustomerProfileBody extends StatelessWidget {
               label: title,
             ),
             Icon(
-              Icons.arrow_right,
+              Icons.arrow_forward_ios,
+              size: 10,
               color: greyColor,
             )
           ],
@@ -107,6 +113,7 @@ class CustomerProfileBody extends StatelessWidget {
       decoration: ButtonGreyBackgroundShadowAccount().getBorderShow(),
       child: TextFieldRegular(
         marginTop: 0,
+        textSize: 16,
         textColor: logoutColorAcount,
         textAligment: Alignment.center,
         label: title,

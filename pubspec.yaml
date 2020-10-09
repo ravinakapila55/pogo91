@@ -55,6 +55,8 @@ flutter:
     - assets/images/ic_minus.png
     - assets/images/ic_delete.png
     - assets/images/illustration3.png
+    - assets/images/check.png
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

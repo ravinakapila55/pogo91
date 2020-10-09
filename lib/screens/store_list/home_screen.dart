@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBar.dart';
-import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBarItem.dart';
 import 'package:pogo91/screens/store_list/component/store_list_body.dart';
-import 'package:pogo91/screens/register/login_screen.dart';
 import 'package:pogo91/utils/colors.dart';
-import 'package:pogo91/utils/constants.dart';
 import 'package:pogo91/utils/images.dart';
+import 'package:pogo91/utils/strings.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -33,7 +30,10 @@ class HomeScreen extends StatelessWidget {
         actions: <Widget>[
           Container(
             margin: EdgeInsets.only(right: 20),
-            child: Icon(Icons.search, color: searchIconColor),
+            child: IconButton(
+              onPressed: () => onClickSearch(context),
+              icon: Icon(Icons.search, color: searchIconColor),
+            ),
           ),
         ],
         backgroundColor: Colors.white,
@@ -42,6 +42,10 @@ class HomeScreen extends StatelessWidget {
       body: StoreListing(),
       backgroundColor: Colors.white,
     );
+  }
+
+  void onClickSearch(BuildContext context) {
+    Navigator.pushNamed(context, NAV_SEARCH);
   }
 }
 
