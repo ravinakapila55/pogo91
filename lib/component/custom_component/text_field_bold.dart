@@ -8,6 +8,8 @@ class TextFieldBold extends StatelessWidget {
   Color textColor;
   Alignment textAligment;
   double textSize;
+
+  
   TextFieldBold(
       {@required this.label,
       this.marginTop: 20.0,

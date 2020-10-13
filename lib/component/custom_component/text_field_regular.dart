@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class TextFieldRegular extends StatelessWidget {
@@ -25,6 +23,7 @@ class TextFieldRegular extends StatelessWidget {
       margin: EdgeInsets.only(top: marginTop),
       child: Text(
         label,
+        maxLines: 2,
         textAlign: textAlign,
         style: TextStyle(
             fontSize: textSize, color: textColor, fontFamily: 'LatoRegular'),

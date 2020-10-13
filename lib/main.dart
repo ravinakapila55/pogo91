@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:pogo91/screens/checkout/component/checkout_screen.dart';
-import 'package:pogo91/screens/main_screen.dart';
-import 'package:pogo91/screens/past_orders/past_order_screen.dart';
-import 'package:pogo91/screens/product_details/product_details_screen.dart';
-import 'package:pogo91/screens/register/login_screen.dart';
-import 'package:pogo91/screens/register/otp_screen.dart';
-import 'package:pogo91/screens/search/search_screen.dart';
-import 'package:pogo91/screens/store_list/all_shops_screen.dart';
-import 'package:pogo91/screens/success_order/book_order_successfully_screen.dart';
-import 'package:pogo91/screens/tutorial/tutorial_screen.dart';
-import 'package:pogo91/screens/user_info/place_picker.dart';
-import 'package:pogo91/screens/user_info/save_address.dart';
-import 'package:pogo91/screens/user_info/save_user_info.dart';
-import 'package:pogo91/screens/user_info/user_addresses.dart';
+import 'package:pogo91/view/checkout/component/checkout_screen.dart';
+import 'package:pogo91/view/main_screen.dart';
+import 'package:pogo91/view/past_orders/past_order_screen.dart';
+import 'package:pogo91/view/product_details/product_details_screen.dart';
+import 'package:pogo91/view/register/login_screen.dart';
+import 'package:pogo91/view/register/otp_screen.dart';
+import 'package:pogo91/view/search/search_screen.dart';
+import 'package:pogo91/view/store_list/all_shops_screen.dart';
+import 'package:pogo91/view/success_order/book_order_successfully_screen.dart';
+import 'package:pogo91/view/tutorial/tutorial_screen.dart';
+import 'package:pogo91/view/user_info/place_picker.dart';
+import 'package:pogo91/view/user_info/save_address.dart';
+import 'package:pogo91/view/user_info/save_user_info.dart';
+import 'package:pogo91/view/user_info/user_addresses.dart';
 import 'package:pogo91/utils/strings.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Auth',
+        title: 'Pogo91',
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
         ),
