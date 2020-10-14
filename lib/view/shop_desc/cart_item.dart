@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pogo91/component/custom_component/normal_text_field.dart';
 import 'package:pogo91/component/custom_component/text_field_regular.dart';
+import 'package:pogo91/model/product_model.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/constants.dart';
 import 'package:pogo91/utils/images.dart';
@@ -10,8 +11,11 @@ import 'package:pogo91/utils/strings.dart';
 class ShoppingCartRow extends StatelessWidget {
   bool isCloseIconVisible;
   Color iconTextColor;
+  ProductsModel productsModel;
   ShoppingCartRow(
-      {this.isCloseIconVisible: false, this.iconTextColor: Colors.white});
+      {this.isCloseIconVisible: false,
+      this.iconTextColor: Colors.white,
+      this.productsModel});
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +47,8 @@ class ShoppingCartRow extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
               width: 55,
               height: 55,
-              child: Image.asset(
-                kOTPMessage,
-                width: 20,
-                height: 20,
+              child: Image.network(
+                productsModel.image_url,
               ),
             ),
             Expanded(
@@ -59,7 +61,7 @@ class ShoppingCartRow extends StatelessWidget {
                   children: [
                     TextFieldRegular(
                       marginTop: 0,
-                      label: "Fortune Refund, 4kg",
+                      label: productsModel.product_name + ", ",
                       textSize: 13,
                     ),
                     Container(
@@ -67,13 +69,13 @@ class ShoppingCartRow extends StatelessWidget {
                         child: Row(
                           children: [
                             NormalTextField(
-                              label: "₹500",
+                              label: "₹ 200",
                               textDecoration: TextDecoration.lineThrough,
                             ),
                             Container(
                               margin: EdgeInsets.only(left: 10),
                               child: NormalTextField(
-                                label: "₹400",
+                                label: "₹ 100",
                                 textColor: Colors.black,
                               ),
                             )

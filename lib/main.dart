@@ -6,7 +6,9 @@ import 'package:pogo91/view/product_details/product_details_screen.dart';
 import 'package:pogo91/view/register/login_screen.dart';
 import 'package:pogo91/view/register/otp_screen.dart';
 import 'package:pogo91/view/search/search_screen.dart';
+import 'package:pogo91/view/shop_desc/shop_description_screen.dart';
 import 'package:pogo91/view/store_list/all_shops_screen.dart';
+import 'package:pogo91/view/store_list_selected/store_list_screen.dart';
 import 'package:pogo91/view/success_order/book_order_successfully_screen.dart';
 import 'package:pogo91/view/tutorial/tutorial_screen.dart';
 import 'package:pogo91/view/user_info/place_picker.dart';
@@ -38,6 +40,30 @@ class MyApp extends StatelessWidget {
                       name: NAV_CHECKOUTSCREEN, arguments: Map()), // (1)
                   builder: (_) => CheckoutScreen());
               break;
+            case NAV_STORE_LIST:
+              return MaterialPageRoute(
+                  settings: RouteSettings(
+                      name: NAV_STORE_LIST,
+                      arguments: settings.arguments), // (1)
+                  builder: (_) => StoreList());
+
+            case NAV_SHOP_DESC:
+              {
+                return MaterialPageRoute(
+                    settings: RouteSettings(
+                        name: NAV_SHOP_DESC,
+                        arguments: settings.arguments), // (1)
+                    builder: (_) => ShopDescription());
+              }
+
+            case NAV_ALL_BUSINESSTYPE:
+              {
+                return MaterialPageRoute(
+                    settings: RouteSettings(
+                        name: NAV_SHOP_DESC,
+                        arguments: settings.arguments), // (1)
+                    builder: (_) => AllShops());
+              }
             default:
           }
         },
@@ -57,7 +83,8 @@ class MyApp extends StatelessWidget {
           NAV_ORDER_SUCCESS: (context) => BookSuccessfullyScreen(),
           NAV_HOME_SCREEN: (context) => MainHomeScreen(),
           NAV_PAST_ORDER: (context) => PastOrderScreen(),
-          NAV_PRODUCT_DETAIL: (context) => ProductScreen()
+          NAV_PRODUCT_DETAIL: (context) => ProductScreen(),
+          NAV_STORE_LIST: (context) => StoreList()
         });
   }
 }

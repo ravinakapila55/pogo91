@@ -5,8 +5,10 @@ import 'package:pogo91/utils/colors.dart';
 class StoreHeader extends StatelessWidget {
   String leftTitleButton;
   String rightTitleButton;
+  Function onPressed;
 
-  StoreHeader(String leftTitleButton, String rightTitleButton) {
+  StoreHeader(String leftTitleButton, String rightTitleButton,
+      {this.onPressed}) {
     this.leftTitleButton = leftTitleButton;
     this.rightTitleButton = rightTitleButton;
   }
@@ -23,10 +25,7 @@ class StoreHeader extends StatelessWidget {
             ),
             Spacer(),
             new InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AllShops()));
-                },
+                onTap: onPressed,
                 child: Text(
                   rightTitleButton,
                   textAlign: TextAlign.right,

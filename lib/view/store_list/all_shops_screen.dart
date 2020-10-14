@@ -1,29 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:pogo91/view/store_list/component/store_category.dart';
+import 'package:pogo91/model/business_type.dart';
 
 import 'package:pogo91/utils/colors.dart';
+import 'package:pogo91/view/store_list/component/store_business_type.dart';
 
 class AllShops extends StatelessWidget {
+  List<BusinessType> args;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
     /*24 is for notification bar on Android*/
-    final double itemHeight = (size.height - kToolbarHeight - 160) / 4;
+    final double itemHeight = (size.height - kToolbarHeight - 100) / 4;
     final double itemWidth = size.width / 4;
+
+    if (args == null) {
+      args = ModalRoute.of(context).settings.arguments;
+    }
 
     // TODO: implement build
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(left: 10, right: 10),
         child: GridView.count(
           crossAxisCount: 4,
           childAspectRatio: (itemWidth / itemHeight),
           controller: new ScrollController(keepScrollOffset: false),
-          shrinkWrap: true,
+          shrinkWrap: false,
           scrollDirection: Axis.vertical,
-          children: List.generate(28, (index) {
-            return (Container(child: StoreCategory()));
+          children: List.generate(args.length, (index) {
+            return (Container(
+                child: StoreBusinessType(
+              businessType: args[index],
+            )));
           }),
         ),
       ),

@@ -53,3 +53,6 @@ const String NAV_SEARCH = '/NAV_SEARCH';
 const String NAV_ORDER_SUCCESS = '/Order_Success';
 const String NAV_PAST_ORDER = '/PastOrders';
 const String NAV_PRODUCT_DETAIL = '/ProductDetailsScreen';
+const String NAV_STORE_LIST = '/StoreList';
+const String NAV_SHOP_DESC = '/ShopDescription';
+const String NAV_ALL_BUSINESSTYPE = '/BusinessTypeAll';

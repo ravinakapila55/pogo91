@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pogo91/component/custom_component/normal_text_field.dart';
-import 'package:pogo91/view/cart/cart_screen.dart';
-import 'package:pogo91/view/shop_desc/shop_description_screen.dart';
+import 'package:pogo91/model/store_model.dart';
+import 'package:pogo91/utils/strings.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/constants.dart';
 import 'package:pogo91/utils/images.dart';
@@ -10,25 +10,26 @@ class StoreSingleInfoItem extends StatelessWidget {
   bool imgShopVisible;
   bool isDeleteIconVisible;
   bool isCallCart;
+  StoreModel storeInfo;
   StoreSingleInfoItem(bool imgShopVisible,
-      {this.isDeleteIconVisible: false, this.isCallCart: false}) {
+      {this.isDeleteIconVisible: false,
+      this.isCallCart: false,
+      this.storeInfo}) {
     this.imgShopVisible = imgShopVisible;
   }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => isCallCart
-          ? Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CartProduct()),
-            )
-          : Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ShopDescription()),
-            ), // handle your onTap here
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          NAV_SHOP_DESC,
+          arguments: storeInfo,
+        );
+      },
       child: Container(
         width: double.infinity,
-        height: 90,
         margin: EdgeInsets.only(top: 20),
         padding: EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
         decoration: BoxDecoration(
@@ -38,7 +39,10 @@ class StoreSingleInfoItem extends StatelessWidget {
         child: Row(
           children: [
             Visibility(
-              visible: imgShopVisible,
+              visible:
+                  (storeInfo.logo_url == null || storeInfo.logo_url.length == 0)
+                      ? false
+                      : true,
               child: Container(
                 margin: EdgeInsets.only(left: 5, right: 5),
                 decoration: BoxDecoration(
@@ -47,10 +51,8 @@ class StoreSingleInfoItem extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 width: 55,
                 height: 55,
-                child: Image.asset(
-                  kOTPMessage,
-                  width: 20,
-                  height: 20,
+                child: Image.network(
+                  storeInfo.logo_url,
                 ),
               ),
             ),
@@ -63,7 +65,7 @@ class StoreSingleInfoItem extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        "30% on groceries",
+                        storeInfo.offer,
                         style: TextStyle(
                             fontSize: 13,
                             color: Colors.black,
@@ -72,7 +74,7 @@ class StoreSingleInfoItem extends StatelessWidget {
                     ),
                     Container(
                       child: Text(
-                        "Raju Kirana Store",
+                        storeInfo.business_name,
                         style: TextStyle(
                             fontSize: 14,
                             color: redColor,
@@ -91,7 +93,7 @@ class StoreSingleInfoItem extends StatelessWidget {
                                   height: 8,
                                 ),
                                 Text(
-                                  "5.0",
+                                  " " + storeInfo.rating.toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 8,
@@ -110,7 +112,7 @@ class StoreSingleInfoItem extends StatelessWidget {
                                     height: 8,
                                   ),
                                   Text(
-                                    "2.5km",
+                                    " " + storeInfo.distance.toString() + " Km",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 8,
@@ -127,29 +129,28 @@ class StoreSingleInfoItem extends StatelessWidget {
               ),
               flex: 4,
             ),
-            Expanded(
-              child: Visibility(
+            Visibility(
                 visible: isDeleteIconVisible,
-                child: Container(
-                  margin: EdgeInsets.only(left: 5, right: 5),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.delete,
-                        color: orangeColor,
-                      ),
-                      NormalTextField(
-                        label: "1 items",
-                        textColor: orangeColor,
-                        textSize: 8,
-                      )
-                    ],
+                child: Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 5, right: 5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.delete,
+                          color: orangeColor,
+                        ),
+                        NormalTextField(
+                          label: "1 items",
+                          textColor: orangeColor,
+                          textSize: 8,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              flex: 1,
-            ),
+                  flex: 1,
+                )),
           ],
         ),
       ),

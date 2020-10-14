@@ -1,13 +1,14 @@
-class StoreCategory {
+class StoreCategoryModel {
   final String image;
   final String display_order;
-  final String id;
+  final int id;
   final String name;
-  const StoreCategory({this.image, this.display_order, this.id, this.name});
+  const StoreCategoryModel(
+      {this.image, this.display_order, this.id, this.name});
 
-  StoreCategory.fromMap(Map<String, dynamic> map)
-      : image = map['image'],
-        display_order = map['display_order'],
+  StoreCategoryModel.fromMap(Map<String, dynamic> map)
+      : image = map['image'].toString(),
+        display_order = map['display_order'].toString(),
         id = map['id'],
-        name = map['name'];
+        name = map['name'].toString();
 }

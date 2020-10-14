@@ -34,7 +34,9 @@ dependencies:
   geocoder: 0.2.1
   http: 0.12.1
   flutter_spinkit: "^4.1.2"
-  
+  rxdart: ^0.20.0
+  shimmer: ^0.0.6
+   
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -61,6 +63,7 @@ flutter:
     - assets/images/illustration3.png
     - assets/images/check.png
     - assets/images/ic_gps.png
+    - assets/images/no_product.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

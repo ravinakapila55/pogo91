@@ -6,7 +6,7 @@ import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBarItem.dart'
 import 'package:pogo91/view/account/customer_profile.dart';
 import 'package:pogo91/view/my_favorite_store/my_favorite_store_screen.dart';
 import 'package:pogo91/view/store_carts/store_cart_screen.dart';
-import 'package:pogo91/view/store_list/home_screen.dart';
+import 'package:pogo91/view/store_list/home_screen/home_screen.dart';
 import 'package:pogo91/utils/colors.dart';
 
 class MainHomeScreen extends StatefulWidget {
