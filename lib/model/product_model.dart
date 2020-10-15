@@ -1,41 +1,41 @@
 import 'package:pogo91/model/price_stock_model.dart';
 
 class ProductsModel {
-  bool allow_below_zero;
-  String image_url;
-  int unit;
-  int product_type;
-  String product_name;
+  String productName;
+  List<PriceStockModel> priceStock;
   String barcode;
-  bool track_inventory;
-  String food_item;
-  String search_keyword;
-  int product_id;
-  List<PriceStockModel> price_stock;
-
+  String searchKeyword;
+  String productDescription;
+  int productId;
+  String imageUrl;
+  bool allowBelowZero;
+  bool trackInventory;
+  PriceStockModel selectedPriceStock;
   ProductsModel(
-      {this.allow_below_zero,
-      this.image_url,
-      this.unit,
-      this.product_type,
-      this.product_name,
+      {this.productName,
+      this.priceStock,
       this.barcode,
-      this.track_inventory,
-      this.food_item,
-      this.search_keyword,
-      this.product_id,
-      this.price_stock});
+      this.searchKeyword,
+      this.productDescription,
+      this.productId,
+      this.imageUrl,
+      this.allowBelowZero,
+      this.trackInventory});
 
-  ProductsModel.fromMap(Map<String, dynamic> map)
-      : allow_below_zero = map['allow_below_zero'] ?? '',
-        image_url = map['image_url'] ?? '',
-        unit = map['unit'],
-        product_type = map['product_type'],
-        product_name = map['product_name'],
-        barcode = map['barcode'],
-        track_inventory = map['track_inventory'],
-        food_item = map['food_item'],
-        search_keyword = map['search_keyword'],
-        product_id = map['product_id'],
-        price_stock = map['price_stock'].cast<PriceStockModel>();
+  ProductsModel.fromJson(Map<String, dynamic> json) {
+    productName = json['product_name'];
+    if (json['price_stock'] != null) {
+      priceStock = new List<PriceStockModel>();
+      json['price_stock'].forEach((v) {
+        priceStock.add(new PriceStockModel.fromMap(v));
+      });
+    }
+    barcode = json['barcode'];
+    searchKeyword = json['search_keyword'];
+    productDescription = json['product_description'];
+    productId = json['product_id'];
+    imageUrl = json['image_url'];
+    allowBelowZero = json['allow_below_zero'];
+    trackInventory = json['track_inventory'];
+  }
 }

@@ -3,6 +3,7 @@ import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBar.dart';
 import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBarItem.dart';
 import 'package:pogo91/model/business_type.dart';
 import 'package:pogo91/model/store_model.dart';
+import 'package:pogo91/utils/strings.dart';
 import 'package:pogo91/view/register/component/background.dart';
 import 'package:pogo91/view/store_list/component/banner.dart';
 import 'package:pogo91/view/store_list/component/shop_add_banner.dart';
@@ -67,10 +68,13 @@ class StoreList_ extends State<StoreList> implements StoreListContract {
           ],
         ),
         actions: <Widget>[
-          Container(
-            margin: EdgeInsets.only(right: 20),
-            child: Icon(Icons.search, color: searchIconColor),
-          ),
+          IconButton(
+            onPressed: () => onClickSearch(context),
+            icon: Container(
+              margin: EdgeInsets.only(right: 20),
+              child: Icon(Icons.search, color: searchIconColor),
+            ),
+          )
         ],
         backgroundColor: Colors.white,
         elevation: 0.0,
@@ -142,6 +146,10 @@ class StoreList_ extends State<StoreList> implements StoreListContract {
         ),
       ),
     );
+  }
+
+  void onClickSearch(BuildContext context) {
+    Navigator.pushNamed(context, NAV_SEARCH);
   }
 
   /// Stores List

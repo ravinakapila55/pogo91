@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pogo91/component/custom_component/normal_text_field.dart';
 import 'package:pogo91/component/custom_component/text_field_regular.dart';
+import 'package:pogo91/model/price_stock_model.dart';
 import 'package:pogo91/model/product_model.dart';
+import 'package:pogo91/utils/box_decoration/edt_grey_decoration.dart';
+import 'package:pogo91/utils/box_decoration/grey_border_shadow.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/constants.dart';
 import 'package:pogo91/utils/images.dart';
@@ -12,10 +15,12 @@ class ShoppingCartRow extends StatelessWidget {
   bool isCloseIconVisible;
   Color iconTextColor;
   ProductsModel productsModel;
+  Widget spinner;
   ShoppingCartRow(
       {this.isCloseIconVisible: false,
       this.iconTextColor: Colors.white,
-      this.productsModel});
+      this.productsModel,
+      this.spinner}) {}
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,7 @@ class ShoppingCartRow extends StatelessWidget {
       },
       child: (Container(
         width: double.infinity,
-        padding: EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
+        padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(width: 1.0, color: greyLightColor),
@@ -45,10 +50,10 @@ class ShoppingCartRow extends StatelessWidget {
                   color: Colors.white,
                   border: Border.all(color: Colors.white),
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              width: 55,
-              height: 55,
+              width: 70,
+              height: 70,
               child: Image.network(
-                productsModel.image_url,
+                productsModel.imageUrl,
               ),
             ),
             Expanded(
@@ -61,24 +66,29 @@ class ShoppingCartRow extends StatelessWidget {
                   children: [
                     TextFieldRegular(
                       marginTop: 0,
-                      label: productsModel.product_name + ", ",
+                      label: productsModel.productName + ", ",
                       textSize: 13,
                     ),
                     Container(
-                        margin: EdgeInsets.only(top: 5),
+                        margin: EdgeInsets.only(top: 18),
                         child: Row(
                           children: [
-                            NormalTextField(
-                              label: "₹ 200",
-                              textDecoration: TextDecoration.lineThrough,
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 10),
-                              child: NormalTextField(
-                                label: "₹ 100",
-                                textColor: Colors.black,
+                            Visibility(
+                              visible: productsModel.priceStock[0].mrp !=
+                                  productsModel.priceStock[0].selling_price,
+                              child: Container(
+                                margin: EdgeInsets.only(right: 10),
+                                child: NormalTextField(
+                                  label: "₹ " + productsModel.priceStock[0].mrp,
+                                  textDecoration: TextDecoration.lineThrough,
+                                ),
                               ),
-                            )
+                            ),
+                            NormalTextField(
+                              label: "₹ " +
+                                  productsModel.priceStock[0].selling_price,
+                              textColor: Colors.black,
+                            ),
                           ],
                         )),
                   ],

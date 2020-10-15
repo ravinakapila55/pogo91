@@ -30,7 +30,7 @@ class StoreBusinessType extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Card(
-                elevation: 5,
+                elevation: 0,
                 child: Container(
                   padding: EdgeInsets.all(10),
                   child: ClipRRect(

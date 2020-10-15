@@ -33,7 +33,6 @@ class _HomeScreen_ extends State<HomeScreen> implements HomeContract {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     permissionCheck();
     _presenter.loadBusinessType();

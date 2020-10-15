@@ -56,3 +56,4 @@ const String NAV_PRODUCT_DETAIL = '/ProductDetailsScreen';
 const String NAV_STORE_LIST = '/StoreList';
 const String NAV_SHOP_DESC = '/ShopDescription';
 const String NAV_ALL_BUSINESSTYPE = '/BusinessTypeAll';
+const String NAV_SPLASH = '/Splash';

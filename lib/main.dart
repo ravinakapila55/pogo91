@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pogo91/splash.dart';
 import 'package:pogo91/view/checkout/component/checkout_screen.dart';
 import 'package:pogo91/view/main_screen.dart';
 import 'package:pogo91/view/past_orders/past_order_screen.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
         ),
-        initialRoute: NAV_TUTORIAL_SCREEN,
+        initialRoute: NAV_SPLASH,
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case NAV_CHECKOUTSCREEN:
@@ -84,7 +85,8 @@ class MyApp extends StatelessWidget {
           NAV_HOME_SCREEN: (context) => MainHomeScreen(),
           NAV_PAST_ORDER: (context) => PastOrderScreen(),
           NAV_PRODUCT_DETAIL: (context) => ProductScreen(),
-          NAV_STORE_LIST: (context) => StoreList()
+          NAV_STORE_LIST: (context) => StoreList(),
+          NAV_SPLASH: (context) => Splash()
         });
   }
 }

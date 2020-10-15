@@ -10,3 +10,4 @@ const String icCheckIcon = 'assets/images/check.png';
 const String icNoProducts = 'assets/images/no_product.png';
 
 const String icGPS = 'assets/images/ic_gps.png';
+const String icSplash = 'assets/images/splash.png';

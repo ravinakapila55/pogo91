@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pogo91/component/custom_component/normal_text_field.dart';
+import 'package:pogo91/component/custom_component/text_field_regular.dart';
 import 'package:pogo91/component/image_button.dart';
+import 'package:pogo91/model/price_stock_model.dart';
 import 'package:pogo91/model/product_model.dart';
 import 'package:pogo91/model/store_category.dart';
 import 'package:pogo91/model/store_info_model.dart';
 import 'package:pogo91/model/store_model.dart';
+import 'package:pogo91/utils/box_decoration/grey_border_shadow.dart';
 import 'package:pogo91/view/cart/cart_screen.dart';
-import 'package:pogo91/view/shop_desc/cart_item.dart';
 import 'package:pogo91/view/shop_desc/products_category.dart';
 import 'package:pogo91/view/shop_desc/shop_description_contract.dart';
 import 'package:pogo91/view/shop_desc/shop_description_presenter.dart';
@@ -82,7 +84,7 @@ class ShopDescription_ extends State<ShopDescription>
         actions: <Widget>[
           Container(
             margin: EdgeInsets.only(right: 20),
-            child: Icon(Icons.rate_review, color: searchIconColor),
+            child: Icon(Icons.rate_review, color: Colors.black),
           ),
         ],
         iconTheme: IconThemeData(
@@ -91,31 +93,43 @@ class ShopDescription_ extends State<ShopDescription>
         centerTitle: true,
       ),
       body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverToBoxAdapter(
-              child: headerView(),
-            ),
-            SliverAppBar(
-              automaticallyImplyLeading: true,
-              elevation: 0,
-              backgroundColor: greyLightColor,
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                title: getHeader(),
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverToBoxAdapter(
+                child: headerView(),
               ),
-              pinned: true,
-            ),
-            SliverPadding(
-              padding: new EdgeInsets.all(2.0),
-              sliver: new SliverList(
-                delegate: new SliverChildListDelegate([getCategory()]),
+              SliverAppBar(
+                automaticallyImplyLeading: false,
+                titleSpacing: 0,
+                elevation: 0,
+                backgroundColor: greyLightColor,
+                flexibleSpace: FlexibleSpaceBar(
+                  titlePadding: EdgeInsets.zero,
+                  centerTitle: true,
+                  title: getHeader(),
+                ),
+                pinned: true,
               ),
-            ),
-          ];
-        },
-        body: isNoProduct ? noProductWidget() : getProductsWidget(),
-      ),
+              SliverAppBar(
+                automaticallyImplyLeading: false,
+                elevation: 0,
+                titleSpacing: 0,
+                toolbarHeight: 40,
+                backgroundColor: greyLightColor,
+                flexibleSpace: FlexibleSpaceBar(
+                  titlePadding: EdgeInsets.all(0),
+                  centerTitle: true,
+                  title: getCategory(),
+                ),
+                pinned: true,
+              ),
+            ];
+          },
+          body: SafeArea(
+            top: false,
+            bottom: false,
+            child: isNoProduct ? noProductWidget() : getProductsWidget(),
+          )),
       bottomNavigationBar: Container(
         height: 65,
         decoration: TopBorderShadow().getBorderShow(),
@@ -204,6 +218,10 @@ class ShopDescription_ extends State<ShopDescription>
         ),
       ),
     );
+  }
+
+  void onClickSearch(BuildContext context) {
+    Navigator.pushNamed(context, NAV_SEARCH);
   }
 
 //<------------------ Store Basis Info--------------------------->
@@ -613,7 +631,7 @@ class ShopDescription_ extends State<ShopDescription>
   // View
 
   Widget setupCategoriesViewWidget() {
-    if (categoryList.length == 0) {
+    if (categoryList.length == 0 && !isNoProduct) {
       return setCategoriesTabShimmerWidget();
     }
     return Container(
@@ -645,9 +663,10 @@ class ShopDescription_ extends State<ShopDescription>
   Widget getHeader() {
     return Container(
         color: greyLightColor,
+        alignment: Alignment.center,
         padding: EdgeInsets.only(
-          left: 20,
-          right: 20,
+          left: 15,
+          right: 15,
         ),
         child: Container(
             child: Row(
@@ -672,7 +691,11 @@ class ShopDescription_ extends State<ShopDescription>
                   iconData: Icons.scanner,
                   marginRight: 10,
                 ),
-                ImageButton(iconData: Icons.search)
+                new GestureDetector(
+                    onTap: () {
+                      onClickSearch(context);
+                    },
+                    child: ImageButton(iconData: Icons.search))
               ],
             ),
           ],
@@ -690,9 +713,7 @@ class ShopDescription_ extends State<ShopDescription>
         itemCount: productList.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            child: ShoppingCartRow(
-              productsModel: productList[index],
-            ),
+            child: getSingleProductWidget(productList[index]),
           );
         });
   }
@@ -700,26 +721,203 @@ class ShopDescription_ extends State<ShopDescription>
   //<----------------No Product Found Widget------------------------->
 
   Widget noProductWidget() {
-    return ListView(
-      padding: EdgeInsets.only(right: 5.0, left: 5.0),
-      scrollDirection: Axis.vertical,
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: 100),
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              Image.asset(
-                icNoProducts,
-                width: 100,
-                height: 100,
-              ),
-              NormalTextField(label: "No Record Found")
-            ],
-          ),
+    return ListView(physics: NeverScrollableScrollPhysics(), children: <Widget>[
+      Container(
+        margin: EdgeInsets.only(top: 100),
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            Image.asset(
+              icNoProducts,
+              width: 100,
+              height: 100,
+            ),
+            NormalTextField(label: "No Record Found")
+          ],
         ),
-      ],
+      )
+    ]);
+  }
+
+  //<------ Price Stock--------------->
+
+  Widget getSingleProductWidget(ProductsModel productsModel) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, NAV_PRODUCT_DETAIL);
+      },
+      child: (Container(
+        width: double.infinity,
+        padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(width: 1.0, color: greyLightColor),
+          ),
+          color: Colors.white,
+        ),
+        child: Row(
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: 5, right: 5),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              width: 70,
+              height: 70,
+              child: Image.network(
+                productsModel.imageUrl,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                margin: EdgeInsets.only(left: 5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextFieldRegular(
+                      marginTop: 0,
+                      label: productsModel.productName +
+                          ", " +
+                          productsModel.selectedPriceStock.name,
+                      textSize: 13,
+                    ),
+                    getPriceStock(productsModel),
+                    Container(
+                        margin: EdgeInsets.only(top: 18),
+                        child: Row(
+                          children: [
+                            Visibility(
+                              visible: productsModel.priceStock[0].mrp !=
+                                  productsModel.priceStock[0].selling_price,
+                              child: Container(
+                                margin: EdgeInsets.only(right: 10),
+                                child: NormalTextField(
+                                  label: "₹ " +
+                                      productsModel.selectedPriceStock.mrp,
+                                  textDecoration: TextDecoration.lineThrough,
+                                ),
+                              ),
+                            ),
+                            NormalTextField(
+                              label: "₹ " +
+                                  productsModel
+                                      .selectedPriceStock.selling_price,
+                              textColor: Colors.black,
+                            ),
+                          ],
+                        )),
+                  ],
+                ),
+              ),
+              flex: 4,
+            ),
+            Expanded(
+              flex: 2,
+              child: Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 10),
+                    padding:
+                        EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+                    decoration: BoxDecoration(
+                        color: yellow,
+                        border: Border.all(color: yellow),
+                        borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: Image.asset(
+                            icCartRemove,
+                            width: 25,
+                            height: 25,
+                            color: Colors.white,
+                          ),
+                          flex: 1,
+                        ),
+                        Flexible(
+                          child: Text(
+                            "1",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontFamily: 'LatoRegular'),
+                          ),
+                          flex: 1,
+                        ),
+                        Flexible(
+                          child: Image.asset(
+                            icCartAdd,
+                            width: 25,
+                            height: 25,
+                            color: Colors.white,
+                          ),
+                          flex: 1,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      )),
     );
+  }
+
+  Widget getPriceStock(ProductsModel productsModel) {
+    if (productsModel.priceStock.length > 1) {
+      return Container(
+        height: 40,
+        width: double.infinity,
+        margin: EdgeInsets.only(right: 15, top: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: GreyBorderShadow().getBorderShow(),
+
+        // dropdown below..
+
+        child: DropdownButton<PriceStockModel>(
+            isExpanded: true,
+            value: productsModel.selectedPriceStock,
+            icon: Icon(Icons.arrow_drop_down),
+            iconSize: 15,
+            underline: Container(
+              color: Colors.white,
+            ),
+            onChanged: (newValue) {
+              setState(() {
+                productsModel.selectedPriceStock = newValue;
+              });
+            },
+            style: new TextStyle(
+              color: Colors.black,
+            ),
+            items: productsModel.priceStock
+                .map<DropdownMenuItem<PriceStockModel>>(
+                    (PriceStockModel model) {
+              return DropdownMenuItem<PriceStockModel>(
+                value: model,
+                child: Container(
+                  child: NormalTextField(
+                    label: model.name,
+                    maxLines: 1,
+                    textSize: 11,
+                    textColor: Colors.black,
+                  ),
+                ),
+              );
+            }).toList()),
+      );
+    } else {
+      return Container();
+    }
+    ;
   }
 
   StoreInfoModel infoStore;
@@ -749,7 +947,6 @@ class ShopDescription_ extends State<ShopDescription>
         isNoProduct = false;
       }
     });
-//categoryList[selectedCategoryPos].id.toString()
 
     if (categoryList.length != 0) {
       _presenter.loadProducts(args.store_id.toString(),
@@ -769,6 +966,10 @@ class ShopDescription_ extends State<ShopDescription>
   void onProductsList(List<ProductsModel> productList) {
     setState(() {
       this.productList = productList;
+
+      for (int i = 0; i < productList.length; i++) {
+        productList[i].selectedPriceStock = productList[i].priceStock[0];
+      }
 
       if (productList.length == 0) {
         isNoProduct = true;

@@ -7,12 +7,14 @@ class NormalTextField extends StatelessWidget {
   Color textColor;
   TextDecoration textDecoration;
   TextAlign textAlign;
+  int maxLines;
   NormalTextField(
       {this.textSize: 14,
       @required this.label,
       this.textColor: greyColor,
       this.textDecoration: TextDecoration.none,
-      textAlign: TextAlign.start});
+      textAlign: TextAlign.start,
+      this.maxLines: 1000});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class NormalTextField extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
+      maxLines: maxLines,
       style: TextStyle(
           fontSize: textSize,
           color: textColor,

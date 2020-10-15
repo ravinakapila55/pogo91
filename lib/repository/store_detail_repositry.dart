@@ -38,7 +38,7 @@ class StoreDetailRepositryImpl implements StoreDetailRepositry {
 
   @override
   Future<List<StoreCategoryModel>> fetchCategoryList(String storeID) async {
-    final response = await http.get(ApiEndPoint.STORE_CATEGORY + "14");
+    final response = await http.get(ApiEndPoint.STORE_CATEGORY + storeID);
     print(ApiEndPoint.STORE_CATEGORY + storeID);
 
     print(ApiEndPoint.STORE_CATEGORY + storeID);
@@ -58,9 +58,9 @@ class StoreDetailRepositryImpl implements StoreDetailRepositry {
   @override
   Future<List<ProductsModel>> fetchProductsList(
       String storeID, String categoryID) async {
-    final response = await http
-        .get(ApiEndPoint.STORE_PRODUCTS + "14" + "&category_id=" + categoryID);
-    print(ApiEndPoint.STORE_PRODUCTS + "14" + "&category_id=" + categoryID);
+    final response = await http.get(
+        ApiEndPoint.STORE_PRODUCTS + storeID + "&category_id=" + categoryID);
+    print(ApiEndPoint.STORE_PRODUCTS + storeID + "&category_id=" + categoryID);
     var statusCode = response.statusCode;
     var jsonBody = response.body;
     if (statusCode != 200 || null == statusCode) {
@@ -70,6 +70,8 @@ class StoreDetailRepositryImpl implements StoreDetailRepositry {
 
     final contactsBody = _decoder.convert(jsonBody);
     final List contacts = contactsBody['products'];
-    return contacts.map((stores) => new ProductsModel.fromMap(stores)).toList();
+    return contacts
+        .map((stores) => new ProductsModel.fromJson(stores))
+        .toList();
   }
 }

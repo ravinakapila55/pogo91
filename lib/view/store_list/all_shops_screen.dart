@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pogo91/model/business_type.dart';
 
 import 'package:pogo91/utils/colors.dart';
+import 'package:pogo91/utils/strings.dart';
 import 'package:pogo91/view/store_list/component/store_business_type.dart';
 
 class AllShops extends StatelessWidget {
@@ -10,29 +12,22 @@ class AllShops extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    /*24 is for notification bar on Android*/
-    final double itemHeight = (size.height - kToolbarHeight - 100) / 4;
-    final double itemWidth = size.width / 4;
-
     if (args == null) {
       args = ModalRoute.of(context).settings.arguments;
     }
-
-    // TODO: implement build
     return Scaffold(
       body: Container(
-        child: GridView.count(
+        color: Colors.white,
+        padding: EdgeInsets.only(left: 20, right: 10),
+        child: StaggeredGridView.countBuilder(
           crossAxisCount: 4,
-          childAspectRatio: (itemWidth / itemHeight),
-          controller: new ScrollController(keepScrollOffset: false),
-          shrinkWrap: false,
-          scrollDirection: Axis.vertical,
-          children: List.generate(args.length, (index) {
-            return (Container(
-                child: StoreBusinessType(
-              businessType: args[index],
-            )));
-          }),
+          itemCount: args.length,
+          itemBuilder: (BuildContext context, int index) => new Container(
+              color: Colors.white, child: allShopScreen(context, args[index])),
+          staggeredTileBuilder: (int index) =>
+              new StaggeredTile.count(1, index.isEven ? 1.2 : 1.2),
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 5.0,
         ),
       ),
       appBar: AppBar(
@@ -70,6 +65,55 @@ class AllShops extends StatelessWidget {
           color: Colors.black, //change your color here
         ),
         centerTitle: true,
+      ),
+    );
+  }
+
+  Widget allShopScreen(BuildContext context, BusinessType businessType) {
+    return Material(
+      color: Colors.white,
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            NAV_STORE_LIST,
+            arguments: businessType,
+          );
+        },
+        // handle your onTap here
+        child: Container(
+          margin: EdgeInsets.only(left: 10, right: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.all(5),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Image.network(
+                    businessType.image != null ? businessType.image : "",
+                    width: double.infinity,
+                    scale: 1.0,
+                    height: 40,
+                  ),
+                ),
+              ),
+              Container(
+                width: 75,
+                margin: EdgeInsets.only(top: 5),
+                child: Text(
+                  businessType.name,
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 10,
+                      color: Colors.black,
+                      fontFamily: 'LatoRegular'),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
