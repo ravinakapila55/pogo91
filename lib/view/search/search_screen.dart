@@ -3,8 +3,10 @@ import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBar.dart';
 import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBarItem.dart';
 import 'package:pogo91/component/custom_component/normal_text_field.dart';
 import 'package:pogo91/component/custom_component/text_field_regular.dart';
+import 'package:pogo91/component/default_image.dart';
 import 'package:pogo91/model/price_stock_model.dart';
 import 'package:pogo91/model/product_model.dart';
+import 'package:pogo91/util/preferences.dart';
 import 'package:pogo91/utils/box_decoration/edt_grey_decoration.dart';
 import 'package:pogo91/utils/box_decoration/grey_border_shadow.dart';
 import 'package:pogo91/utils/colors.dart';
@@ -44,7 +46,7 @@ class SearchScreen_ extends State<SearchScreen>
     }
     this.searchText = text;
     if (text.length != 0) {
-      presenter.loadProducts("14", text);
+      presenter.loadProducts(storeID, text);
     } else {
       setState(() {
         productList.clear();
@@ -52,72 +54,101 @@ class SearchScreen_ extends State<SearchScreen>
     }
   }
 
+  String storeID;
+  String userAddress = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    Preferences().getSelectedLocationInfo().then((value) {
+      if (value.address != null) {
+        setState(() {
+          userAddress = value.address;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: Colors.black, //change your color here
-          ),
-          automaticallyImplyLeading: true, // Don't show the leading button
-          titleSpacing: 0.0,
-          title: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              NormalTextField(
-                textColor: Colors.black,
-                label: "Hi, Hitashi Garg",
-                textSize: 13,
-              ),
-              NormalTextField(
-                textColor: Colors.black,
-                label: "C1-501, Cherry County, Tech Zone..",
-                textSize: 13,
-              )
-              // Your widgets here
-            ],
-          ),
+    if (storeID == null) {
+      storeID = ModalRoute.of(context).settings.arguments;
+    }
 
-          backgroundColor: Colors.white,
-          elevation: 0.0,
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
         ),
-        body: getBody(),
-        floatingActionButton: Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: SizedBox(
-            height: 70,
-            width: 70,
-            child: FloatingActionButton(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              onPressed: () {},
-              child: Container(
-                height: 70,
-                width: 70,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 4),
-                  shape: BoxShape.circle,
-                  color: Constants.yellow,
-                ),
-                child: Icon(Icons.photo_camera, size: 30),
+        automaticallyImplyLeading: true, // Don't show the leading button
+        titleSpacing: 0.0,
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            NormalTextField(
+              textColor: Colors.black,
+              label: "Hi, Hitashi Garg",
+              textSize: 13,
+            ),
+            NormalTextField(
+              textColor: Colors.black,
+              label: userAddress,
+              maxLines: 1,
+              textSize: 13,
+            )
+            // Your widgets here
+          ],
+        ),
+
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+      ),
+      body: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onPanDown: (_) {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: getBody()),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(top: 20),
+        child: SizedBox(
+          height: 70,
+          width: 70,
+          child: FloatingActionButton(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            onPressed: () {},
+            child: Container(
+              height: 70,
+              width: 70,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white, width: 4),
+                shape: BoxShape.circle,
+                color: Constants.yellow,
               ),
+              child: Icon(Icons.photo_camera, size: 30),
             ),
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: FABBottomAppBar(
-          centerItemText: '',
-          color: Colors.white,
-          backgroundColor: Constants.yellow,
-          selectedColor: Colors.white,
-          items: [
-            FABBottomAppBarItem(iconData: Icons.home),
-            FABBottomAppBarItem(iconData: Icons.rate_review),
-            FABBottomAppBarItem(iconData: Icons.create_new_folder),
-            FABBottomAppBarItem(iconData: Icons.supervised_user_circle),
-          ],
-        ));
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: FABBottomAppBar(
+        centerItemText: '',
+        color: Colors.white,
+        backgroundColor: Constants.yellow,
+        selectedColor: Colors.white,
+        items: [
+          FABBottomAppBarItem(iconData: Icons.home),
+          FABBottomAppBarItem(iconData: Icons.rate_review),
+          FABBottomAppBarItem(iconData: Icons.create_new_folder),
+          FABBottomAppBarItem(iconData: Icons.supervised_user_circle),
+        ],
+      ),
+      extendBody: true,
+    );
   }
 
   // <--------------Body ---------------------->
@@ -125,6 +156,7 @@ class SearchScreen_ extends State<SearchScreen>
   Widget getBody() {
     return SingleChildScrollView(
       child: Container(
+        padding: EdgeInsets.only(bottom: 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -273,7 +305,11 @@ class SearchScreen_ extends State<SearchScreen>
   Widget getSingleProductWidget(ProductsModel productsModel) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, NAV_PRODUCT_DETAIL);
+        Navigator.pushNamed(
+          context,
+          NAV_PRODUCT_DETAIL,
+          arguments: productsModel,
+        );
       },
       child: (Container(
         width: double.infinity,
@@ -294,9 +330,7 @@ class SearchScreen_ extends State<SearchScreen>
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
               width: 70,
               height: 70,
-              child: Image.network(
-                productsModel.imageUrl,
-              ),
+              child: DefaultImage().getImageView(productsModel.imageUrl),
             ),
             Expanded(
               child: Container(
@@ -348,7 +382,7 @@ class SearchScreen_ extends State<SearchScreen>
               child: Stack(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(right: 10),
+                    margin: EdgeInsets.only(right: 10, top: 10),
                     padding:
                         EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
                     decoration: BoxDecoration(

@@ -1,3 +1,5 @@
+import 'package:pogo91/utils/common_function.dart';
+
 class PriceStockModel {
   final String barcode;
   final String weight;
@@ -26,9 +28,10 @@ class PriceStockModel {
         weight = map['weight'].toString(),
         id = map['id'].toString(),
         variant_id = map['variant_id'].toString(),
-        selling_price = map['selling_price'].toString(),
+        selling_price = CommonFunction.removeDecimalZeroFormat(
+            map['selling_price'].toString()),
         name = map['name'].toString(),
-        mrp = map['mrp'].toString(),
+        mrp = CommonFunction.removeDecimalZeroFormat(map['mrp'].toString()),
         added_quantity = map['added_quantity'].toString(),
         quantity = map['quantity'].toString();
 }

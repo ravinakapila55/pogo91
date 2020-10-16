@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:pogo91/component/default_image.dart';
 import 'package:pogo91/model/business_type.dart';
-
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/strings.dart';
-import 'package:pogo91/view/store_list/component/store_business_type.dart';
 
 class AllShops extends StatelessWidget {
   List<BusinessType> args;
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
     if (args == null) {
       args = ModalRoute.of(context).settings.arguments;
     }
+
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -89,14 +87,9 @@ class AllShops extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(5),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15.0),
-                  child: Image.network(
-                    businessType.image != null ? businessType.image : "",
-                    width: double.infinity,
-                    scale: 1.0,
-                    height: 40,
-                  ),
-                ),
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: DefaultImage()
+                        .getImage(businessType.image, double.infinity, 40)),
               ),
               Container(
                 width: 75,

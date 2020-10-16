@@ -3,6 +3,7 @@ import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBar.dart';
 import 'package:pogo91/component/bottom_navigation_bar/FABBottomAppBarItem.dart';
 import 'package:pogo91/model/business_type.dart';
 import 'package:pogo91/model/store_model.dart';
+import 'package:pogo91/util/preferences.dart';
 import 'package:pogo91/utils/strings.dart';
 import 'package:pogo91/view/register/component/background.dart';
 import 'package:pogo91/view/store_list/component/banner.dart';
@@ -23,8 +24,17 @@ class StoreList_ extends State<StoreList> implements StoreListContract {
   List<StoreModel> stores = List();
   StorePresenter _presenter;
 
+  String userAddress = "";
   StoreList_() {
     _presenter = new StorePresenter(this);
+
+    Preferences().getSelectedLocationInfo().then((value) {
+      if (value.address != null) {
+        setState(() {
+          userAddress = value.address;
+        });
+      }
+    });
   }
   BusinessType args;
   @override
@@ -34,35 +44,42 @@ class StoreList_ extends State<StoreList> implements StoreListContract {
       _presenter.loadStore(args.id.toString());
     }
     return Scaffold(
+      extendBody: true,
       appBar: AppBar(
-        automaticallyImplyLeading: true, // Don't show the leading button
+        automaticallyImplyLeading: false, // Don't show the leading button
         titleSpacing: 0.0,
-        leading: new IconButton(
-          icon: new Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Hi, Hitashi Garg",
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.black,
-                        fontFamily: 'LatoRegular')),
-                Container(
-                  margin: EdgeInsets.only(top: 4),
-                  child: Text("C1-501, Cherry County, Tech Zone..",
-                      style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
-                          fontFamily: 'LatoRegular')),
-                )
-              ],
+            Expanded(
+              child: IconButton(
+                icon: new Icon(Icons.arrow_back_ios, color: Colors.black),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              flex: 2,
+            ),
+
+            Expanded(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Hi, Hitashi Garg",
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                            fontFamily: 'LatoRegular')),
+                    Container(
+                      margin: EdgeInsets.only(top: 4),
+                      child: Text(userAddress,
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black,
+                              fontFamily: 'LatoRegular')),
+                    )
+                  ]),
+              flex: 8,
             )
             // Your widgets here
           ],
@@ -74,7 +91,7 @@ class StoreList_ extends State<StoreList> implements StoreListContract {
               margin: EdgeInsets.only(right: 20),
               child: Icon(Icons.search, color: searchIconColor),
             ),
-          )
+          ),
         ],
         backgroundColor: Colors.white,
         elevation: 0.0,
@@ -123,6 +140,7 @@ class StoreList_ extends State<StoreList> implements StoreListContract {
   Widget getBody() {
     return Background(
       child: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -149,7 +167,11 @@ class StoreList_ extends State<StoreList> implements StoreListContract {
   }
 
   void onClickSearch(BuildContext context) {
-    Navigator.pushNamed(context, NAV_SEARCH);
+    Navigator.pushNamed(
+      context,
+      NAV_SEARCH,
+      arguments: "14",
+    );
   }
 
   /// Stores List

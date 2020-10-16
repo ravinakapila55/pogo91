@@ -6,7 +6,11 @@ class ProductBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return CustomScrollView(slivers: <Widget>[
+    return Container();
+  }
+}
+
+/*CustomScrollView(slivers: <Widget>[
       SliverFixedExtentList(
         itemExtent: 90.0,
         delegate: SliverChildBuilderDelegate(
@@ -18,6 +22,4 @@ class ProductBody extends StatelessWidget {
           },
         ),
       )
-    ]);
-  }
-}
+    ]);*/

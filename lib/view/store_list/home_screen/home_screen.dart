@@ -7,7 +7,6 @@ import 'package:pogo91/view/store_list/component/banner.dart';
 import 'package:pogo91/utils/colors.dart';
 import 'package:pogo91/utils/images.dart';
 import 'package:pogo91/utils/strings.dart';
-import 'dart:io' show Platform;
 
 import 'package:pogo91/view/store_list/component/shop_add_banner.dart';
 import 'package:pogo91/view/store_list/component/store.dart';
@@ -24,8 +23,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen_ extends State<HomeScreen> implements HomeContract {
-  String _address = "";
-
   HomePresenter _presenter;
   _HomeScreen_() {
     _presenter = new HomePresenter(this);
@@ -34,104 +31,15 @@ class _HomeScreen_ extends State<HomeScreen> implements HomeContract {
   @override
   void initState() {
     super.initState();
-    permissionCheck();
     _presenter.loadBusinessType();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: true, // Don't show the leading button
-        titleSpacing: 0.0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: IconButton(
-                onPressed: () => null,
-                icon: ImageIcon(AssetImage(kGPSImage), color: Colors.black),
-              ),
-              flex: 2,
-            ),
-
-            Expanded(
-              child: Text(_address,
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                      fontFamily: 'LatoRegular')),
-              flex: 8,
-            )
-            // Your widgets here
-          ],
-        ),
-        actions: <Widget>[
-          Container(
-            margin: EdgeInsets.only(right: 20),
-            child: IconButton(
-              onPressed: () => onClickSearch(context),
-              icon: Icon(Icons.search, color: searchIconColor),
-            ),
-          ),
-        ],
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-      ),
-      body: getBody(),
+      body: SafeArea(child: getBody()),
       backgroundColor: Colors.white,
     );
-  }
-
-  void onClickSearch(BuildContext context) {
-    Navigator.pushNamed(context, NAV_SEARCH);
-  }
-
-  permissionCheck() async {
-    await checkPermission().then((results) {
-      if (results == LocationPermission.always ||
-          results == LocationPermission.whileInUse) {
-        getCurrentLocation();
-      } else {
-        callPermission();
-      }
-    });
-  }
-
-  void callPermission() async {
-    LocationPermission permission = await requestPermission().then((results) {
-      if (results == LocationPermission.always ||
-          results == LocationPermission.whileInUse) {
-        getCurrentLocation();
-      } else {
-        if (results == LocationPermission.denied) {
-          // Deny only first not for block the permission
-          checkPermission();
-        } else {
-          if (Platform.isAndroid) {
-            openAppSettings();
-          } else if (Platform.isIOS) {
-            // iOS-specific code
-            openLocationSettings();
-          }
-        }
-      }
-    });
-  }
-
-  getCurrentLocation() async {
-    Position position =
-        await getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    print(position.latitude.toString());
-    final coordinates = new Coordinates(position.latitude, position.longitude);
-    var addresses =
-        await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    var first = addresses.first;
-    setState(() {
-      _address = first.addressLine;
-    });
-    return position;
   }
 
   List<BusinessType> businessTypes = List();

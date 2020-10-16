@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pogo91/component/default_image.dart';
 import 'package:pogo91/model/business_type.dart';
 import 'package:pogo91/utils/strings.dart';
 import 'package:pogo91/view/store_list_selected/store_list_screen.dart';
@@ -34,14 +35,9 @@ class StoreBusinessType extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(10),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
-                    child: Image.network(
-                      businessType.image != null ? businessType.image : "",
-                      width: 55,
-                      scale: 1.0,
-                      height: 55,
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(15.0),
+                      child:
+                          DefaultImage().getImage(businessType.image, 55, 55)),
                 ),
               ),
               Container(

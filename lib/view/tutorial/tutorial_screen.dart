@@ -91,39 +91,52 @@ class _TutorialScreen extends State<TutorialScreen> {
           ],
         ),
         bottomSheet: Container(
-          padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
           color: Colors.white,
-          child: slideIndex != 2
-              ? Container(
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          controller.animateToPage(2,
-                              duration: Duration(milliseconds: 400),
-                              curve: Curves.linear);
-                        },
-                        child: Container(
-                          height: 50,
-                          alignment: Alignment.centerLeft,
-                          child: NormalTextField(
-                            label: skip,
-                            textSize: 15,
-                            textColor: Colors.black,
+          padding: EdgeInsets.only(left: 20, right: 20),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                    top: BorderSide(
+                  //                   <--- left side
+                  color: greyBorderColor,
+
+                  width: 1.0,
+                ))),
+            padding: EdgeInsets.only(left: 0, right: 0, bottom: 10, top: 10),
+            child: slideIndex != 2
+                ? Container(
+                    color: Colors.white,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () {
+                            controller.animateToPage(2,
+                                duration: Duration(milliseconds: 400),
+                                curve: Curves.linear);
+                          },
+                          child: Container(
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                            child: NormalTextField(
+                              label: skip,
+                              textSize: 15,
+                              textColor: Colors.black,
+                            ),
                           ),
                         ),
-                      ),
-                      nextButton(),
-                    ],
+                        nextButton(),
+                      ],
+                    ),
+                  )
+                : ButtonRegular(
+                    marginTop: 0,
+                    label: "Get Started",
+                    onPressedButton: () => onClickHomeScreen(context),
+                    decoration: YellowSolidShadow50().getDecoration(),
                   ),
-                )
-              : ButtonRegular(
-                  label: "Get Started",
-                  onPressedButton: () => onClickHomeScreen(context),
-                  decoration: YellowSolidShadow50().getDecoration(),
-                ),
+          ),
         ),
       ),
     );

@@ -6,6 +6,9 @@ class ApiEndPoint {
   static const String STORE_DETAIL = BASE_URL + "store/details/?store_id=";
   static const String STORE_PRODUCTS =
       BASE_URL + "store/category/product/?store_id";
+
+  static const String STORE_SINGLE_DETAIL = BASE_URL + "store/product/details/";
+
   static const String SEARCH_PRODUCTS =
       BASE_URL + "store/category/product/?store_id=";
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pogo91/component/custom_component/normal_text_field.dart';
 import 'package:pogo91/component/custom_component/text_field_regular.dart';
+import 'package:pogo91/component/default_image.dart';
 import 'package:pogo91/component/image_button.dart';
 import 'package:pogo91/model/price_stock_model.dart';
 import 'package:pogo91/model/product_model.dart';
@@ -221,7 +222,11 @@ class ShopDescription_ extends State<ShopDescription>
   }
 
   void onClickSearch(BuildContext context) {
-    Navigator.pushNamed(context, NAV_SEARCH);
+    Navigator.pushNamed(
+      context,
+      NAV_SEARCH,
+      arguments: infoStore.store_id.toString(),
+    );
   }
 
 //<------------------ Store Basis Info--------------------------->
@@ -588,9 +593,13 @@ class ShopDescription_ extends State<ShopDescription>
       children: [
         Container(
           decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(width: 1.0, color: greyLightColor),
-            ),
+            border: categoryList.length != 0
+                ? Border(
+                    bottom: BorderSide(width: 1.0, color: greyLightColor),
+                  )
+                : Border(
+                    bottom: BorderSide(width: 1.0, color: Colors.white),
+                  ),
             color: Colors.white,
           ),
           height: 40,
@@ -744,7 +753,11 @@ class ShopDescription_ extends State<ShopDescription>
   Widget getSingleProductWidget(ProductsModel productsModel) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, NAV_PRODUCT_DETAIL);
+        Navigator.pushNamed(
+          context,
+          NAV_PRODUCT_DETAIL,
+          arguments: productsModel,
+        );
       },
       child: (Container(
         width: double.infinity,
@@ -765,9 +778,7 @@ class ShopDescription_ extends State<ShopDescription>
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
               width: 70,
               height: 70,
-              child: Image.network(
-                productsModel.imageUrl,
-              ),
+              child: DefaultImage().getImageView(productsModel.imageUrl),
             ),
             Expanded(
               child: Container(
@@ -819,7 +830,7 @@ class ShopDescription_ extends State<ShopDescription>
               child: Stack(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(right: 10),
+                    margin: EdgeInsets.only(right: 10, top: 10),
                     padding:
                         EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
                     decoration: BoxDecoration(

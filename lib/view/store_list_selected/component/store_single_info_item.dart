@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pogo91/component/custom_component/normal_text_field.dart';
+import 'package:pogo91/component/default_image.dart';
 import 'package:pogo91/model/store_model.dart';
 import 'package:pogo91/utils/strings.dart';
 import 'package:pogo91/utils/colors.dart';
@@ -51,9 +52,7 @@ class StoreSingleInfoItem extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 width: 55,
                 height: 55,
-                child: Image.network(
-                  storeInfo.logo_url,
-                ),
+                child: DefaultImage().getImageView(storeInfo.logo_url),
               ),
             ),
             Expanded(

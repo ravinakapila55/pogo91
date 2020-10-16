@@ -1,9 +1,9 @@
 import 'package:pogo91/repository/business_type_repository.dart';
+import 'package:pogo91/repository/single_store_detail_repositry.dart';
 import 'package:pogo91/repository/store_detail_repositry.dart';
 import 'package:pogo91/repository/store_list_repositry.dart';
 import 'package:pogo91/repository/store_search_product_repositry.dart';
 import 'package:pogo91/service/network_service.dart';
-import 'package:pogo91/view/store_list_selected/store_list_screen.dart';
 
 class Injector {
   static final Injector _singleton = new Injector._internal();
@@ -16,6 +16,10 @@ class Injector {
 
   BusinessTypeRepositry get usersRepository {
     return new BusinessTypeRepositryImpl();
+  }
+
+  SingleStoreDetailRepositry get storeSingleDetailRepo {
+    return new SingleStoreDetailRepositryImpl();
   }
 
   StoreListRepositry get storesRepositry {

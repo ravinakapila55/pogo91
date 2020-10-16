@@ -65,6 +65,24 @@ class MyApp extends StatelessWidget {
                         arguments: settings.arguments), // (1)
                     builder: (_) => AllShops());
               }
+
+            case NAV_PRODUCT_DETAIL:
+              {
+                return MaterialPageRoute(
+                    settings: RouteSettings(
+                        name: NAV_PRODUCT_DETAIL,
+                        arguments: settings.arguments), // (1)
+                    builder: (_) => ProductDetailScreen());
+              }
+
+            case NAV_SEARCH:
+              {
+                return MaterialPageRoute(
+                    settings: RouteSettings(
+                        name: NAV_SEARCH, arguments: settings.arguments), // (1)
+                    builder: (_) => SearchScreen());
+              }
+
             default:
           }
         },
@@ -84,9 +102,8 @@ class MyApp extends StatelessWidget {
           NAV_ORDER_SUCCESS: (context) => BookSuccessfullyScreen(),
           NAV_HOME_SCREEN: (context) => MainHomeScreen(),
           NAV_PAST_ORDER: (context) => PastOrderScreen(),
-          NAV_PRODUCT_DETAIL: (context) => ProductScreen(),
           NAV_STORE_LIST: (context) => StoreList(),
-          NAV_SPLASH: (context) => Splash()
+          NAV_SPLASH: (context) => Splash(),
         });
   }
 }

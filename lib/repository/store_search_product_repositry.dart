@@ -20,11 +20,15 @@ class StoreSearchProductRepositryImpl implements StoreSearchProductRepositry {
   @override
   Future<List<ProductsModel>> fetchProductsList(
       String storeID, String search_keyword) async {
-    final response = await http.get(
-        ApiEndPoint.SEARCH_PRODUCTS + "14" + "&product_name=" + search_keyword);
+    final response = await http.get(ApiEndPoint.SEARCH_PRODUCTS +
+        storeID +
+        "&product_name=" +
+        search_keyword);
 
-    print(
-        ApiEndPoint.SEARCH_PRODUCTS + "14" + "&product_name=" + search_keyword);
+    print(ApiEndPoint.SEARCH_PRODUCTS +
+        storeID +
+        "&product_name=" +
+        search_keyword);
     var statusCode = response.statusCode;
     var jsonBody = response.body;
     if (statusCode != 200 || null == statusCode) {
